@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Cart</title>
+    <script defer src="main.js"></script>
+</head>
+<body>
+    <h1>Your Cart</h1>
+    <div id="cart-items"></div>
+    <button onclick="clearCart()">Clear Cart</button>
+    <button onclick="checkout()">Checkout</button>
+
+    <script>
+        function loadCart() {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            let cartItemsDiv = document.getElementById("cart-items");
+            cartItemsDiv.innerHTML = "";
+
+            if (cart.length === 0) {
+                cartItemsDiv.innerHTML = "<p>Your cart is empty</p>";
+                return;
+            }
+
+            cart.forEach((item, index) => {
+                let div = document.createElement("div");
+                div.innerHTML = `
+                    <p>${item.name} - $${item.price} x ${item.quantity} 
+                        <button onclick="updateQuantity(${index}, -1)">-</button>
+                        <button onclick="updateQuantity(${index}, 1)">+</button>
+                        <button onclick="removeItem(${index})">Remove</button>
+                    </p>
+                `;
+                cartItemsDiv.appendChild(div);
+            });
+        }
+
+        function updateQuantity(index, change) {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            cart[index].quantity += change;
+
+            if (cart[index].quantity <= 0) {
+                cart.splice(index, 1);
+            }
+
+            localStorage.setItem("cart", JSON.stringify(cart));
+            loadCart();
+        }
+
+        function removeItem(index) {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            cart.splice(index, 1);
+            localStorage.setItem("cart", JSON.stringify(cart));
+            loadCart();
+        }
+
+        function clearCart() {
+            localStorage.removeItem("cart");
+            loadCart();
+        }
+
+        function checkout() {
+            alert("Redirecting to checkout...");
+            localStorage.removeItem("cart");
+            window.location.href = "checkout.html";
+        }
+
+        loadCart();
+    </script>
+</body>
+</html>
