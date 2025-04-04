@@ -1,93 +1,223 @@
 <!-- Explore Books Section -->
 <section id="books" class="books section">
-  <div class="container section-title" data-aos="fade-up">
-    <h2>Explore Books</h2>
-    <p><span>Discover</span> <span class="description-title">Your Next Read</span></p>
-  </div>
-
-  <!-- Filters -->
-  <div class="container filters">
-    <div class="row d-flex align-items-center justify-content-between flex-wrap">
-      <div class="col-md-3">
-        <label for="priceFilter">Price:</label>
-        <select id="priceFilter" class="form-control" onchange="applyFilters()">
-          <option value="all">All</option>
-          <option value="0-10">$0 - $10</option>
-          <option value="10-20">$10 - $20</option>
-          <option value="20-50">$20 - $50</option>
-        </select>
-      </div>
-
-      <div class="col-md-3">
-        <label for="languageFilter">Language:</label>
-        <select id="languageFilter" class="form-control" onchange="applyFilters()">
-          <option value="all">All</option>
-          <option value="english">English</option>
-          <option value="hindi">Hindi</option>
-          <option value="french">French</option>
-          <option value="german">German</option>
-        </select>
-      </div>
-
-      <div class="col-md-3">
-        <label for="authorFilter">Author:</label>
-        <select id="authorFilter" class="form-control" onchange="applyFilters()">
-          <option value="all">All</option>
-          <option value="author1">Author 1</option>
-          <option value="author2">Author 2</option>
-          <option value="author3">Author 3</option>
-        </select>
-      </div>
-
-      <div class="col-md-3">
-        <label for="BookCategoryFilter">Category:</label>
-        <select id="BookCategoryFilter" class="form-control" onchange="applyFilters()">
-          <option value="all">All</option>
-          <option value="category1">Fiction</option>
-          <option value="category2">Mystery</option>
-          <option value="category3">Science Fiction</option>
-          <option value="category4">Fantasy</option>
-          <option value="category5">Romance</option>
-          <option value="category6">Biographies</option>
-          <option value="category7">Crime</option>
-          <option value="category8">Thriller/Suspense</option>
-          <option value="category9">Historical Fiction</option>
-          <option value="category10">Action & Adventure</option>
-          <option value="category11">Horror</option>
-          <option value="category12">Health</option>
-          <option value="category13">Travel</option>
-          <option value="category14">Religion/Spirituality</option>
-          <option value="category15">Philosophy</option>
-          <option value="category16">Comics</option>
-        </select>
-      </div>
+    <div class="container section-title" data-aos="fade-up">
+        <h2>Explore Books</h2>
+        <p><span>Discover</span> <span class="description-title">Your Next Read</span></p>
     </div>
-  </div>
 
-  <!--Book Section Title -->
-  <div class="container section-title" data-aos="fade-up">
-    <p><span>Explore Our</span> <span class="description-title">Books Collection</span></p>
-  </div>
+    <!-- Filters and Search -->
+    <div class="container filters">
+        <div class="row d-flex align-items-center justify-content-between flex-wrap">
+            <div class="col-md-12">
+                <label for="searchFilter">Search:</label>
+                <input type="text" id="searchFilter" class="form-control form-control-lg" placeholder="Search books..."
+                       oninput="applyFilters()"/>
+            </div>
+            <div class="col-md-3">
+                <label for="priceFilter">Price:</label>
+                <select id="priceFilter" class="form-control" onchange="applyFilters()">
+                    <option value="all">All</option>
+                    <option value="0-10">$0 - $10</option>
+                    <option value="10-20">$10 - $20</option>
+                    <option value="20-50">$20 - $50</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label for="languageFilter">Language:</label>
+                <select id="languageFilter" class="form-control" onchange="applyFilters()">
+                    <option value="all">All</option>
+                    <option value="english">English</option>
+                    <option value="hindi">Hindi</option>
+                    <option value="french">French</option>
+                    <option value="german">German</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label for="categoryFilter">Category:</label>
+                <select id="categoryFilter" class="form-control" onchange="applyFilters()">
+                    <option value="all">All</option>
+                    <option value="fiction">Fiction</option>
+                    <option value="mystery">Mystery</option>
+                    <option value="science-fiction">Science Fiction</option>
+                    <option value="fantasy">Fantasy</option>
+                    <option value="romance">Romance</option>
+                    <option value="biographies">Biographies</option>
+                    <option value="crime">Crime</option>
+                    <option value="thriller">Thriller/Suspense</option>
+                    <option value="historical-fiction">Historical Fiction</option>
+                    <option value="action-adventure">Action & Adventure</option>
+                    <option value="horror">Horror</option>
+                    <option value="health">Health</option>
+                    <option value="travel">Travel</option>
+                    <option value="religion">Religion/Spirituality</option>
+                    <option value="philosophy">Philosophy</option>
+                    <option value="comics">Comics</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label for="sortFilter">Sort By:</label>
+                <select id="sortFilter" class="form-control" onchange="applyFilters()">
+                    <option value="default">Default</option>
+                    <option value="price-low">Price: Low to High</option>
+                    <option value="price-high">Price: High to Low</option>
+                    <option value="popularity">Popularity</option>
+                </select>
+            </div>
+        </div>
+    </div>
 
-  <div class="container mt-4">
-    <div id="booksContainer" class="row row-cols-2 row-cols-sm-4 row-cols-lg-8 g-4">
-      <!-- Book cards will be dynamically inserted here -->
+    <!-- Book Section Title -->
+    <div class="container section-title" data-aos="fade-up">
+        <p><span>Explore Our</span> <span class="description-title">Books Collection</span></p>
     </div>
-  </div>
-  
-  <!-- Book Detail Modal -->
-  <div id="bookDetailModal" class="modal">
-    <div class="modal-content">
-      <span class="closeModal" onclick="closeModal()">&times;</span>
-      <img id="modalImage" src="" alt="Book Image" />
-      <h3 id="modalTitle"></h3>
-      <p><strong>Author:</strong> <span id="modalAuthor"></span></p>
-      <p><strong>Price:</strong> $<span id="modalPrice"></span></p>
-      <p><strong>Description:</strong></p>
-      <button class="add-to-cart" data-id="1" data-name="Book Name" data-price="10">
-        Add to Cart
-      </button>
-      <p id="modalDescription"></p>
+
+    <div class="container mt-4">
+        <div id="booksContainer" class="row row-cols-2 row-cols-sm-4 row-cols-lg-6 g-4">
+            <!-- Book cards will be dynamically inserted here -->
+        </div>
     </div>
-  </div>
-</section> 
+
+    <!-- Book Detail Modal -->
+    <div id="bookDetailModal" class="modal">
+        <div class="modal-content">
+            <span class="closeModal" onclick="closeModal()">&times;</span>
+            <img id="modalImage" src="" alt="Book Image"/>
+            <h3 id="modalTitle"></h3>
+            <p><strong>Author:</strong> <span id="modalAuthor"></span></p>
+            <p><strong>Price:</strong> $<span id="modalPrice"></span></p>
+            <p><strong>Description:</strong></p>
+            <p id="modalDescription"></p>
+            <p><strong>Rating:</strong> <span id="modalRating">⭐⭐⭐⭐☆</span></p>
+            <button class="add-to-cart" data-id="1" data-name="Book Name" data-price="10">
+                Add to Cart
+            </button>
+            <button class="add-to-wishlist" onclick="addToWishlist()">Add to Wishlist</button>
+        </div>
+    </div>
+</section>
+
+<script>
+    async function applyFilters() {
+        let search = document.getElementById("searchFilter").value.trim();
+        let price = document.getElementById("priceFilter").value;
+        let language = document.getElementById("languageFilter").value;
+        let category = document.getElementById("categoryFilter").value;
+        let sort = document.getElementById("sortFilter").value;
+
+        // Construct query parameters dynamically
+        // let queryParams = [];
+        // if (search) queryParams.push(`search=${encodeURIComponent(search)}`);
+        // if (price !== "all") queryParams.push(`price=${price}`);
+        // if (language !== "all") queryParams.push(`language=${language}`);
+        // if (category !== "all") queryParams.push(`category=${category}`);
+        // if (sort !== "default") queryParams.push(`sort=${sort}`);
+        //
+        // let queryString = queryParams.length ? `?${queryParams.join("&")}` : "";
+        //
+        // try {
+        //     let response = await fetch(`http://localhost:8080/api/books${queryString}`);
+        //     let books = await response.json();
+        //     displayBooks(books);
+        // } catch (error) {
+        //     console.error("Error fetching filtered books:", error);
+        // }
+    }
+
+    // Display books function
+    function displayBooks(books) {
+        let container = document.getElementById("booksContainer");
+        if (!container) {
+            console.warn("booksContainer not found in DOM.");
+            return;
+        }
+
+        container.innerHTML = ""; // Clear previous content
+
+        if (books.length === 0) {
+            container.innerHTML = "<p class='text-center w-100'>No books found.</p>";
+            return;
+        }
+
+        books.forEach(book => {
+            let bookCard = document.createElement("div");
+            bookCard.className = "col";
+
+            bookCard.innerHTML = `
+      <div class="card h-100">
+        <img src="${book.imageUrl}" class="card-img-top" alt="${book.title}" loading="lazy">
+        <div class="card-body">
+          <h5 class="card-title">${book.title}</h5>
+          <p class="card-text"><strong>Author:</strong> ${book.author}</p>
+          <p class="card-text"><strong>Price:</strong> $${book.price}</p>
+          <p class="card-text"><strong>Category:</strong> ${book.category}</p>
+          <button class="btn btn-primary" onclick="openBookDetail(${book.id})">View Details</button>
+        </div>
+      </div>`;
+
+            container.appendChild(bookCard);
+        });
+    }
+
+    // Function to open book details
+    async function openBookDetail(id) {
+        try {
+            // let response = await fetch(`http://localhost:8080/api/books/${id}`);
+            // let book = await response.json();
+
+            document.getElementById("modalImage").src = book.imageUrl;
+            document.getElementById("modalTitle").textContent = book.title;
+            document.getElementById("modalAuthor").textContent = book.author;
+            document.getElementById("modalPrice").textContent = book.price;
+            document.getElementById("modalDescription").textContent = book.description;
+            document.getElementById("modalRating").textContent = "⭐⭐⭐⭐☆"; // Assume rating data
+
+            document.getElementById("bookDetailModal").style.display = "block";
+        } catch (error) {
+            console.error("Error fetching book details:", error);
+        }
+    }
+
+    // Function to close modal
+    function closeModal() {
+        document.getElementById("bookDetailModal").style.display = "none";
+    }
+
+    // Dummy books for testing
+    const dummyBooks = [
+        {
+            id: 1,
+            title: "The Great Gatsby",
+            author: "F. Scott Fitzgerald",
+            price: 10.99,
+            category: "Fiction",
+            imageUrl: "https://via.placeholder.com/150"
+        },
+        {
+            id: 2,
+            title: "1984",
+            author: "George Orwell",
+            price: 8.99,
+            category: "Science Fiction",
+            imageUrl: "https://via.placeholder.com/150"
+        },
+        {
+            id: 3,
+            title: "To Kill a Mockingbird",
+            author: "Harper Lee",
+            price: 12.49,
+            category: "Historical Fiction",
+            imageUrl: "https://via.placeholder.com/150"
+        }
+    ];
+
+    displayBooks(dummyBooks); // Display dummy books on page load
+
+    window.onload = function () {
+        displayBooks(dummyBooks);
+    };
+
+
+    function addToWishlist() {
+        alert("Book added to Wishlist!");
+    }
+</script>
