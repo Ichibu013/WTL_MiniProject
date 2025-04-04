@@ -1,0 +1,39 @@
+<!-- categories Section -->
+<section id="categories" class="categories section">
+  <div class="container-fluid" data-aos="fade-up" data-aos-delay="100">
+    <div class="category-text">
+      <h4>📚 Explore Book Categories<br><br><br></h4>
+    </div>
+    <div class="swiper init-swiper">
+      <script type="application/json" class="swiper-config">
+        {
+          "loop": true,
+          "speed": 600,
+          "autoplay": {
+            "delay": 5000
+          },
+          "slidesPerView": "auto",
+          "pagination": {
+            "el": ".swiper-pagination",
+            "type": "bullets",
+            "clickable": true
+          },
+          "breakpoints": {
+            "320": {
+              "slidesPerView": 1,
+              "spaceBetween": 40
+            },
+            "1200": {
+              "slidesPerView": 3,
+              "spaceBetween": 1
+            }
+          }
+        }
+      </script>
+      <div class="swiper-wrapper">
+        <!-- Category slides will be dynamically loaded -->
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </div>
+</section> 

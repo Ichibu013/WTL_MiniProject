@@ -1,0 +1,93 @@
+<!-- Explore Books Section -->
+<section id="books" class="books section">
+  <div class="container section-title" data-aos="fade-up">
+    <h2>Explore Books</h2>
+    <p><span>Discover</span> <span class="description-title">Your Next Read</span></p>
+  </div>
+
+  <!-- Filters -->
+  <div class="container filters">
+    <div class="row d-flex align-items-center justify-content-between flex-wrap">
+      <div class="col-md-3">
+        <label for="priceFilter">Price:</label>
+        <select id="priceFilter" class="form-control" onchange="applyFilters()">
+          <option value="all">All</option>
+          <option value="0-10">$0 - $10</option>
+          <option value="10-20">$10 - $20</option>
+          <option value="20-50">$20 - $50</option>
+        </select>
+      </div>
+
+      <div class="col-md-3">
+        <label for="languageFilter">Language:</label>
+        <select id="languageFilter" class="form-control" onchange="applyFilters()">
+          <option value="all">All</option>
+          <option value="english">English</option>
+          <option value="hindi">Hindi</option>
+          <option value="french">French</option>
+          <option value="german">German</option>
+        </select>
+      </div>
+
+      <div class="col-md-3">
+        <label for="authorFilter">Author:</label>
+        <select id="authorFilter" class="form-control" onchange="applyFilters()">
+          <option value="all">All</option>
+          <option value="author1">Author 1</option>
+          <option value="author2">Author 2</option>
+          <option value="author3">Author 3</option>
+        </select>
+      </div>
+
+      <div class="col-md-3">
+        <label for="BookCategoryFilter">Category:</label>
+        <select id="BookCategoryFilter" class="form-control" onchange="applyFilters()">
+          <option value="all">All</option>
+          <option value="category1">Fiction</option>
+          <option value="category2">Mystery</option>
+          <option value="category3">Science Fiction</option>
+          <option value="category4">Fantasy</option>
+          <option value="category5">Romance</option>
+          <option value="category6">Biographies</option>
+          <option value="category7">Crime</option>
+          <option value="category8">Thriller/Suspense</option>
+          <option value="category9">Historical Fiction</option>
+          <option value="category10">Action & Adventure</option>
+          <option value="category11">Horror</option>
+          <option value="category12">Health</option>
+          <option value="category13">Travel</option>
+          <option value="category14">Religion/Spirituality</option>
+          <option value="category15">Philosophy</option>
+          <option value="category16">Comics</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!--Book Section Title -->
+  <div class="container section-title" data-aos="fade-up">
+    <p><span>Explore Our</span> <span class="description-title">Books Collection</span></p>
+  </div>
+
+  <div class="container mt-4">
+    <div id="booksContainer" class="row row-cols-2 row-cols-sm-4 row-cols-lg-8 g-4">
+      <!-- Book cards will be dynamically inserted here -->
+    </div>
+  </div>
+  
+  <!-- Book Detail Modal -->
+  <div id="bookDetailModal" class="modal">
+    <div class="modal-content">
+      <span class="closeModal" onclick="closeModal()">&times;</span>
+      <img id="modalImage" src="" alt="Book Image" />
+      <h3 id="modalTitle"></h3>
+      <p><strong>Author:</strong> <span id="modalAuthor"></span></p>
+      <p><strong>Price:</strong> $<span id="modalPrice"></span></p>
+      <p><strong>Description:</strong></p>
+      <button class="add-to-cart" data-id="1" data-name="Book Name" data-price="10">
+        Add to Cart
+      </button>
+      <p id="modalDescription"></p>
+    </div>
+  </div>
+</section> 

@@ -21,6 +21,8 @@ async function loadHTML(url, targetId) {
                 targetElement.innerHTML = '<div class="alert alert-danger">Error loading header</div>';
             } else if (targetId === 'footer-container') {
                 targetElement.innerHTML = '<div class="alert alert-danger">Error loading footer</div>';
+            } else {
+                targetElement.innerHTML = '<div class="alert alert-danger">Error loading section</div>';
             }
         }
     }
@@ -42,14 +44,24 @@ function initializeComponents() {
     }
 }
 
-// Load header and footer when the page loads
+// Load all sections when the page loads
 document.addEventListener('DOMContentLoaded', function() {
-    Promise.all([
-        loadHTML('header.html', 'header-container'),
-        loadHTML('footer.html', 'footer-container')
-    ]).then(() => {
-        initializeComponents();
-    }).catch(error => {
-        console.error('Error initializing components:', error);
-    });
+    const sections = [
+        { url: 'header.html', id: 'header-container' },
+        { url: 'sections/hero.html', id: 'hero-container' },
+        { url: 'sections/about.html', id: 'about-container' },
+        { url: 'sections/categories.html', id: 'categories-container' },
+        { url: 'sections/books.html', id: 'books-container' },
+        { url: 'sections/authors.html', id: 'authors-container' },
+        { url: 'sections/contact.html', id: 'contact-container' },
+        { url: 'footer.html', id: 'footer-container' }
+    ];
+
+    Promise.all(sections.map(section => loadHTML(section.url, section.id)))
+        .then(() => {
+            initializeComponents();
+        })
+        .catch(error => {
+            console.error('Error initializing components:', error);
+        });
 }); 
