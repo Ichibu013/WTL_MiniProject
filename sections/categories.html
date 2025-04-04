@@ -10,7 +10,9 @@
           "loop": true,
           "speed": 600,
           "autoplay": {
-            "delay": 5000
+            "delay": 5000,
+            "disableOnInteraction": false,
+            "pauseOnMouseEnter": true
           },
           "slidesPerView": "auto",
           "pagination": {
@@ -31,9 +33,160 @@
         }
       </script>
       <div class="swiper-wrapper">
-        <!-- Category slides will be dynamically loaded -->
+
+        <div class="swiper-slide event-item d-flex flex-column justify-content-end" style="background-image: url(assets/img/fiction.jpg)" aria-label="Friction">
+          <h3>Fiction</h3>
+          <p class="description">
+            Explore imaginative and creative storytelling from renowned authors.
+          </p>
+        </div><!-- End Event item -->
+
+        <div class="swiper-slide event-item d-flex flex-column justify-content-end" style="background-image: url(assets/img/Mystery.jpeg)" aria-label="Mystery">
+          <h3>Mystery</h3>
+          <p class="description">
+            Solve thrilling puzzles and uncover secrets with mystery novels.
+          </p>
+        </div><!-- End Event item -->
+
+        <div class="swiper-slide event-item d-flex flex-column justify-content-end" style="background-image: url(assets/img/Science.jpg)" aria-label="Science">
+          <h3>Science Fiction</h3>
+          <p class="description">
+            Travel through time and space with the best sci-fi books.
+          </p>
+        </div><!-- End Event item -->
+
+        <div class="swiper-slide event-item d-flex flex-column justify-content-end" style="background-image: url(assets/img/fantasy.jpg)" aria-label="Fantasy">
+          <h3>Fantasy</h3>
+          <p class="description">
+            Enter magical worlds filled with dragons, wizards, and adventure.
+          </p>
+        </div><!-- End Event item -->
+
+        <div class="swiper-slide event-item d-flex flex-column justify-content-end" style="background-image: url(assets/img/romance.jpeg)" aria-label="Romance">
+          <h3>Romance</h3>
+          <p class="description">
+            Experience love stories that warm the heart and stir emotions.
+          </p>
+        </div><!-- End Event item -->
+
+        <div class="swiper-slide event-item d-flex flex-column justify-content-end" style="background-image: url(assets/img/Biography.jpeg)" aria-label="Biography">
+          <h3>Biographies</h3>
+          <p class="description">
+            Read inspiring life stories of remarkable people.
+          </p>
+        </div><!-- End Event item -->
+
+        <div class="swiper-slide event-item d-flex flex-column justify-content-end" style="background-image: url(assets/img/Crime.jpeg)" aria-label="Crime">
+          <h3>Crime</h3>
+          <p class="description">
+            Dive into the world of detectives, criminals, and investigations.
+          </p>
+        </div><!-- End Event item -->
+
+        <div class="swiper-slide event-item d-flex flex-column justify-content-end" style="background-image: url(assets/img/suspense.jpg)" aria-label="Suspense">
+          <h3>Thriller/Suspense</h3>
+          <p class="description">
+            Fast-paced narratives filled with tension, danger, and twists.
+          </p>
+        </div><!-- End Event item -->
+
+        <div class="swiper-slide event-item d-flex flex-column justify-content-end" style="background-image: url(assets/img/History.jpeg)" aria-label="History">
+          <h3>Historical Fiction</h3>
+          <p class="description">
+            Fictional tales set against real historical backdrops.
+          </p>
+        </div><!-- End Event item -->
+
+        <div class="swiper-slide event-item d-flex flex-column justify-content-end" style="background-image: url(assets/img/Adventure.jpeg)" aria-label="Adventure">
+          <h3>Action & Adventure</h3>
+          <p class="description">
+            High-energy stories with daring exploits and heroic quests.
+          </p>
+        </div><!-- End Event item -->
+
+        <div class="swiper-slide event-item d-flex flex-column justify-content-end" style="background-image: url(assets/img/Horror.jpeg)" aria-label="Horror">
+          <h3>Horror</h3>
+          <p class="description">
+            Spine-chilling stories with supernatural or psychological terror.
+          </p>
+        </div><!-- End Event item -->
+
+        <div class="swiper-slide event-item d-flex flex-column justify-content-end" style="background-image: url(assets/img/health.jpeg)" aria-label="Health">
+          <h3>Health</h3>
+          <p class="description">
+            Guides and insights on physical, mental, and emotional well-being.
+          </p>
+        </div><!-- End Event item -->
+
+
+        <div class="swiper-slide event-item d-flex flex-column justify-content-end" style="background-image: url(assets/img/travel.jpg)" aria-label="Travel">
+          <h3>Travel</h3>
+          <p class="description">
+            Inspiring journeys and cultural discoveries from around the globe.
+          </p>
+        </div><!-- End Event item -->
+
+        <div class="swiper-slide event-item d-flex flex-column justify-content-end" style="background-image: url(assets/img/spiritual.jpg)" aria-label="Spiritual">
+          <h3>Religion/Spirituality</h3>
+          <p class="description">
+            Explorations of faith, belief systems, and inner peace.
+          </p>
+        </div><!-- End Event item -->
+
+        <div class="swiper-slide event-item d-flex flex-column justify-content-end" style="background-image: url(assets/img/Philosophy.jpeg)" aria-label="Philosophy">
+          <h3>Philosophy</h3>
+          <p class="description">
+            Thought-provoking works on existence, ethics, and knowledge.
+          </p>
+        </div><!-- End Event item -->
+
+        <div class="swiper-slide event-item d-flex flex-column justify-content-end" style="background-image: url(assets/img/Comics.jpeg)" aria-label="Comics">
+          <h3>Comics</h3>
+          <p class="description">
+            Dive into vibrant stories told through powerful art, humor, and iconic characters
+          </p>
+        </div><!-- End Event item -->
+
       </div>
       <div class="swiper-pagination"></div>
     </div>
+
   </div>
-</section> 
+
+</section>
+
+<style>
+  /* Gradient overlay for readability */
+  .event-item {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    color: white;
+    padding: 1rem;
+    background-size: cover;
+    background-position: center;
+    min-height: 300px;
+  }
+
+  .event-item::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
+    z-index: 0;
+  }
+
+  .event-item h3,
+  .event-item .description {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Slide hover effect */
+  .swiper-slide:hover {
+    transform: scale(1.02);
+    transition: transform 0.3s ease;
+    z-index: 2;
+  }
+</style>

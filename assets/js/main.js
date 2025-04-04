@@ -43,7 +43,15 @@ function initializeMainJS() {
 
     // Init swiper
     if (typeof Swiper !== 'undefined') {
-        const swiper = new Swiper('.swiper', {
+        // Initialize categories swiper
+        const categoriesSwiperConfig = document.querySelector('.swiper-config');
+        if (categoriesSwiperConfig) {
+            const config = JSON.parse(categoriesSwiperConfig.textContent);
+            new Swiper('.init-swiper', config);
+        }
+
+        // Initialize any other swipers with default config
+        const defaultSwiper = new Swiper('.swiper:not(.init-swiper)', {
             slidesPerView: 1,
             spaceBetween: 30,
             loop: true,
