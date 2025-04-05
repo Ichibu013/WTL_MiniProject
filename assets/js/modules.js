@@ -9,6 +9,10 @@ async function loadHTML(url, targetId) {
         const targetElement = document.getElementById(targetId);
         if (targetElement) {
             targetElement.innerHTML = html;
+            // Initialize books module if this is the books section
+            if (targetId === 'books-container') {
+                loadBooksModule();
+            }
         } else {
             console.error(`Target element with id '${targetId}' not found`);
         }
@@ -25,6 +29,21 @@ async function loadHTML(url, targetId) {
                 targetElement.innerHTML = '<div class="alert alert-danger">Error loading section</div>';
             }
         }
+    }
+}
+
+// Function to load and initialize the books module
+function loadBooksModule() {
+    if (!document.querySelector('script[src="assets/js/books.js"]')) {
+        const script = document.createElement('script');
+        script.src = 'assets/js/books.js';
+        script.onload = function() {
+            console.log('Books.js loaded successfully');
+            if (typeof booksModule !== 'undefined') {
+                booksModule.init();
+            }
+        };
+        document.body.appendChild(script);
     }
 }
 

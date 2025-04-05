@@ -10,12 +10,11 @@
         <div class="row d-flex align-items-center justify-content-between flex-wrap">
             <div class="col-md-12">
                 <label for="searchFilter">Search:</label>
-                <input type="text" id="searchFilter" class="form-control form-control-lg" placeholder="Search books..."
-                       oninput="applyFilters()"/>
+                <input type="text" id="searchFilter" class="form-control form-control-lg" placeholder="Search books..."/>
             </div>
             <div class="col-md-3">
                 <label for="priceFilter">Price:</label>
-                <select id="priceFilter" class="form-control" onchange="applyFilters()">
+                <select id="priceFilter" class="form-control">
                     <option value="all">All</option>
                     <option value="0-10">$0 - $10</option>
                     <option value="10-20">$10 - $20</option>
@@ -24,7 +23,7 @@
             </div>
             <div class="col-md-3">
                 <label for="languageFilter">Language:</label>
-                <select id="languageFilter" class="form-control" onchange="applyFilters()">
+                <select id="languageFilter" class="form-control">
                     <option value="all">All</option>
                     <option value="english">English</option>
                     <option value="hindi">Hindi</option>
@@ -34,7 +33,7 @@
             </div>
             <div class="col-md-3">
                 <label for="categoryFilter">Category:</label>
-                <select id="categoryFilter" class="form-control" onchange="applyFilters()">
+                <select id="categoryFilter" class="form-control">
                     <option value="all">All</option>
                     <option value="fiction">Fiction</option>
                     <option value="mystery">Mystery</option>
@@ -56,7 +55,7 @@
             </div>
             <div class="col-md-3">
                 <label for="sortFilter">Sort By:</label>
-                <select id="sortFilter" class="form-control" onchange="applyFilters()">
+                <select id="sortFilter" class="form-control">
                     <option value="default">Default</option>
                     <option value="price-low">Price: Low to High</option>
                     <option value="price-high">Price: High to Low</option>
@@ -78,146 +77,50 @@
     </div>
 
     <!-- Book Detail Modal -->
-    <div id="bookDetailModal" class="modal">
-        <div class="modal-content">
-            <span class="closeModal" onclick="closeModal()">&times;</span>
-            <img id="modalImage" src="" alt="Book Image"/>
-            <h3 id="modalTitle"></h3>
-            <p><strong>Author:</strong> <span id="modalAuthor"></span></p>
-            <p><strong>Price:</strong> $<span id="modalPrice"></span></p>
-            <p><strong>Description:</strong></p>
-            <p id="modalDescription"></p>
-            <p><strong>Rating:</strong> <span id="modalRating">⭐⭐⭐⭐☆</span></p>
-            <button class="add-to-cart" data-id="1" data-name="Book Name" data-price="10">
-                Add to Cart
-            </button>
-            <button class="add-to-wishlist" onclick="addToWishlist()">Add to Wishlist</button>
+    <div class="modal-overlay" id="modalOverlay">
+        <div id="bookDetailModal" class="modal">
+            <div class="modal-content">
+                <span class="closeModal" onclick="booksModule.closeModal()">&times;</span>
+                <div class="modal-body">
+                    <div class="modal-left">
+                        <h3 id="modalTitle"></h3>
+                        <p><strong>Author:</strong> <span id="modalAuthor"></span></p>
+                        <p><strong>Price:</strong> $<span id="modalPrice"></span></p>
+                        <p><strong>Description:</strong></p>
+                        <p id="modalDescription"></p>
+                        <button id="addToCartBtn" class="add-to-cart">
+                            Add to Cart
+                        </button>
+                    </div>
+                    <div class="modal-right">
+                        <img id="modalImage" src="" alt="Book Image" />
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+
 </section>
 
+<!-- Initialize books module after content is loaded -->
 <script>
-    async function applyFilters() {
-        let search = document.getElementById("searchFilter").value.trim();
-        let price = document.getElementById("priceFilter").value;
-        let language = document.getElementById("languageFilter").value;
-        let category = document.getElementById("categoryFilter").value;
-        let sort = document.getElementById("sortFilter").value;
-
-        // Construct query parameters dynamically
-        // let queryParams = [];
-        // if (search) queryParams.push(`search=${encodeURIComponent(search)}`);
-        // if (price !== "all") queryParams.push(`price=${price}`);
-        // if (language !== "all") queryParams.push(`language=${language}`);
-        // if (category !== "all") queryParams.push(`category=${category}`);
-        // if (sort !== "default") queryParams.push(`sort=${sort}`);
-        //
-        // let queryString = queryParams.length ? `?${queryParams.join("&")}` : "";
-        //
-        // try {
-        //     let response = await fetch(`http://localhost:8080/api/books${queryString}`);
-        //     let books = await response.json();
-        //     displayBooks(books);
-        // } catch (error) {
-        //     console.error("Error fetching filtered books:", error);
-        // }
+    // Wait for the DOM to be fully loaded
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initializeBooks);
+    } else {
+        initializeBooks();
     }
 
-    // Display books function
-    function displayBooks(books) {
-        let container = document.getElementById("booksContainer");
-        if (!container) {
-            console.warn("booksContainer not found in DOM.");
-            return;
-        }
-
-        container.innerHTML = ""; // Clear previous content
-
-        if (books.length === 0) {
-            container.innerHTML = "<p class='text-center w-100'>No books found.</p>";
-            return;
-        }
-
-        books.forEach(book => {
-            let bookCard = document.createElement("div");
-            bookCard.className = "col";
-
-            bookCard.innerHTML = `
-      <div class="card h-100">
-        <img src="${book.imageUrl}" class="card-img-top" alt="${book.title}" loading="lazy">
-        <div class="card-body">
-          <h5 class="card-title">${book.title}</h5>
-          <p class="card-text"><strong>Author:</strong> ${book.author}</p>
-          <p class="card-text"><strong>Price:</strong> $${book.price}</p>
-          <p class="card-text"><strong>Category:</strong> ${book.category}</p>
-          <button class="btn btn-primary" onclick="openBookDetail(${book.id})">View Details</button>
-        </div>
-      </div>`;
-
-            container.appendChild(bookCard);
-        });
-    }
-
-    // Function to open book details
-    async function openBookDetail(id) {
-        try {
-            // let response = await fetch(`http://localhost:8080/api/books/${id}`);
-            // let book = await response.json();
-
-            document.getElementById("modalImage").src = book.imageUrl;
-            document.getElementById("modalTitle").textContent = book.title;
-            document.getElementById("modalAuthor").textContent = book.author;
-            document.getElementById("modalPrice").textContent = book.price;
-            document.getElementById("modalDescription").textContent = book.description;
-            document.getElementById("modalRating").textContent = "⭐⭐⭐⭐☆"; // Assume rating data
-
-            document.getElementById("bookDetailModal").style.display = "block";
-        } catch (error) {
-            console.error("Error fetching book details:", error);
-        }
-    }
-
-    // Function to close modal
-    function closeModal() {
-        document.getElementById("bookDetailModal").style.display = "none";
-    }
-
-    // Dummy books for testing
-    const dummyBooks = [
-        {
-            id: 1,
-            title: "The Great Gatsby",
-            author: "F. Scott Fitzgerald",
-            price: 10.99,
-            category: "Fiction",
-            imageUrl: "https://via.placeholder.com/150"
-        },
-        {
-            id: 2,
-            title: "1984",
-            author: "George Orwell",
-            price: 8.99,
-            category: "Science Fiction",
-            imageUrl: "https://via.placeholder.com/150"
-        },
-        {
-            id: 3,
-            title: "To Kill a Mockingbird",
-            author: "Harper Lee",
-            price: 12.49,
-            category: "Historical Fiction",
-            imageUrl: "https://via.placeholder.com/150"
-        }
-    ];
-
-    displayBooks(dummyBooks); // Display dummy books on page load
-
-    window.onload = function () {
-        displayBooks(dummyBooks);
-    };
-
-
-    function addToWishlist() {
-        alert("Book added to Wishlist!");
+    function initializeBooks() {
+        // Load the books.js script
+        const script = document.createElement('script');
+        script.src = 'assets/js/books.js';
+        script.onload = function() {
+            console.log('Books.js loaded successfully');
+            if (typeof booksModule !== 'undefined') {
+                booksModule.init();
+            }
+        };
+        document.body.appendChild(script);
     }
 </script>

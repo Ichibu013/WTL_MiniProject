@@ -199,15 +199,22 @@ function filterBooks(category) {
   // Sample array of book objects
   const books = [
     {
+      id: 1,
       title: "The Enchanted Forest",
       author: "Ava Green",
-      price: 15,
-      language: "English",
-      category: "Fantasy",
+      price: 15.00,
+      category: "fantasy",
+      language: "english",
+      imageUrl: "path/to/enchanted_forest.jpg",
       description: "An epic journey through a mystical forest filled with magical creatures.",
-      image: "path/to/enchanted_forest.jpg"
-    },
-    // Add remaining 319 book objects here
+      isbn: "978-1234567890",
+      publishDate: "2023-01-15",
+      publisher: "Fantasy Press",
+      pageCount: 320,
+      rating: 4.8,
+      reviews: 450
+    }
+    // Add remaining book objects here
   ];
 
   // Function to render books based on filters
@@ -225,20 +232,21 @@ function filterBooks(category) {
 
       bookCard.innerHTML = `
         <div class="card h-100 shadow-sm">
-          <img src="${book.image}" class="card-img-top" alt="${book.title}">
+          <img src="${book.imageUrl}" class="card-img-top" alt="${book.title}">
           <div class="card-body">
             <h5 class="card-title">${book.title}</h5>
             <p class="card-text">
               <strong>Author:</strong> ${book.author}<br>
-              <strong>Price:</strong> $${book.price}<br>
-              <strong>Description:</strong> ${book.description}
+              <strong>Price:</strong> $${book.price.toFixed(2)}<br>
+              <strong>Category:</strong> ${book.category}<br>
+              <strong>Rating:</strong> ${book.rating} ⭐ (${book.reviews} reviews)
             </p>
           </div>
         </div>
       `;
 
       // Add click event to show detailed view
-      bookCard.addEventListener('click', () => showBookDetails(book));
+      bookCard.addEventListener('click', () => booksModule.openModal(book));
 
       container.appendChild(bookCard);
     });
@@ -264,144 +272,157 @@ function filterBooks(category) {
   }
 
   // Function to show book details in the modal
-function showBookDetails(book) {
-  document.getElementById("modalImage").src = book.image;
-  document.getElementById("modalTitle").textContent = book.title;
-  document.getElementById("modalAuthor").textContent = book.author;
-  document.getElementById("modalPrice").textContent = book.price;
-  document.getElementById("modalDescription").textContent = book.description;
-  document.getElementById("bookDetailModal").style.display = "block";
-}
-
-// Function to close the modal
-function closeModal() {
-  document.getElementById("bookDetailModal").style.display = "none";
-}
-
-document.addEventListener("DOMContentLoaded", function () {
-  const modal = document.getElementById("bookDetailModal");
-  const closeButton = document.querySelector(".closeModal"); // Fix: Select using class
-
-  if (closeButton) {
-      closeButton.addEventListener("click", function () {
-          modal.style.display = "none";
-      });
+  function showBookDetails(book) {
+    document.getElementById("modalImage").src = book.imageUrl;
+    document.getElementById("modalTitle").textContent = book.title;
+    document.getElementById("modalAuthor").textContent = book.author;
+    document.getElementById("modalPrice").textContent = book.price.toFixed(2);
+    document.getElementById("modalDescription").textContent = book.description;
+    
+    // Add additional book details if available
+    const additionalDetails = document.createElement('div');
+    additionalDetails.innerHTML = `
+      <p><strong>ISBN:</strong> ${book.isbn}</p>
+      <p><strong>Publisher:</strong> ${book.publisher}</p>
+      <p><strong>Published:</strong> ${book.publishDate}</p>
+      <p><strong>Pages:</strong> ${book.pageCount}</p>
+      <p><strong>Rating:</strong> ${book.rating} ⭐ (${book.reviews} reviews)</p>
+    `;
+    document.getElementById("modalDescription").after(additionalDetails);
+    
+    document.getElementById("bookDetailModal").style.display = "block";
   }
 
-  // Optional: Close modal when clicking outside the content box
-  window.addEventListener("click", function (event) {
-      if (event.target === modal) {
-          modal.style.display = "none";
-      }
-  });
-});
-document.addEventListener("DOMContentLoaded", function () {
-  const signInTab = document.getElementById("signInTab");
-  const registerTab = document.getElementById("registerTab");
-  const signInForm = document.getElementById("sign-in-form");
-  const registerForm = document.getElementById("register-form");
-
-  // Default: Show Sign-in form
-  signInForm.classList.add("active");
-  signInTab.classList.add("active");
-
-  signInTab.addEventListener("click", function () {
-      signInForm.classList.add("active");
-      registerForm.classList.remove("active");
-
-      signInTab.classList.add("active");
-      registerTab.classList.remove("active");
-  });
-
-  registerTab.addEventListener("click", function () {
-      registerForm.classList.add("active");
-      signInForm.classList.remove("active");
-
-      registerTab.classList.add("active");
-      signInTab.classList.remove("active");
-  });
-});
-
-// cart functionalities
-document.addEventListener("DOMContentLoaded", function () {
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-  function updateCartCount() {
-      document.getElementById("cart-count").textContent = cart.length;
+  // Function to close the modal
+  function closeModal() {
+    document.getElementById("bookDetailModal").style.display = "none";
   }
 
-  function saveCart() {
-      localStorage.setItem("cart", JSON.stringify(cart));
-  }
+  document.addEventListener("DOMContentLoaded", function () {
+    const modal = document.getElementById("bookDetailModal");
+    const closeButton = document.querySelector(".closeModal"); // Fix: Select using class
 
-  function addToCart(event) {
-      const button = event.target;
-      const id = button.getAttribute("data-id");
-      const name = button.getAttribute("data-name");
-      const price = parseFloat(button.getAttribute("data-price"));
-
-      let existingItem = cart.find(item => item.id === id);
-      if (existingItem) {
-          existingItem.quantity += 1;
-      } else {
-          cart.push({ id, name, price, quantity: 1 });
-      }
-
-      saveCart();
-      updateCartCount();
-      alert("Added to cart!");
-  }
-
-  document.querySelectorAll(".add-to-cart").forEach(button => {
-      button.addEventListener("click", addToCart);
-  });
-
-  updateCartCount();
-});
-
-
-  // Initial render
-  document.addEventListener('DOMContentLoaded', () => renderBooks(books));
-
-
-  /**
-   * Correct scrolling position upon page load for URLs containing hash links.
-   */
-  window.addEventListener('load', function(e) {
-    if (window.location.hash) {
-      if (document.querySelector(window.location.hash)) {
-        setTimeout(() => {
-          let section = document.querySelector(window.location.hash);
-          let scrollMarginTop = getComputedStyle(section).scrollMarginTop;
-          window.scrollTo({
-            top: section.offsetTop - parseInt(scrollMarginTop),
-            behavior: 'smooth'
-          });
-        }, 100);
-      }
+    if (closeButton) {
+        closeButton.addEventListener("click", function () {
+            modal.style.display = "none";
+        });
     }
+
+    // Optional: Close modal when clicking outside the content box
+    window.addEventListener("click", function (event) {
+        if (event.target === modal) {
+            modal.style.display = "none";
+        }
+    });
   });
 
-  /**
-   * Navbooks Scrollspy
-   */
-  let navbookslinks = document.querySelectorAll('.navbooks a');
+  document.addEventListener("DOMContentLoaded", function () {
+    const signInTab = document.getElementById("signInTab");
+    const registerTab = document.getElementById("registerTab");
+    const signInForm = document.getElementById("sign-in-form");
+    const registerForm = document.getElementById("register-form");
 
-  function navbooksScrollspy() {
-    navbookslinks.forEach(navbookslink => {
-      if (!navbookslink.hash) return;
-      let section = document.querySelector(navbookslink.hash);
-      if (!section) return;
-      let position = window.scrollY + 200;
-      if (position >= section.offsetTop && position <= (section.offsetTop + section.offsetHeight)) {
-        document.querySelectorAll('.navbooks a.active').forEach(link => link.classList.remove('active'));
-        navbookslink.classList.add('active');
-      } else {
-        navbookslink.classList.remove('active');
+    // Default: Show Sign-in form
+    signInForm.classList.add("active");
+    signInTab.classList.add("active");
+
+    signInTab.addEventListener("click", function () {
+        signInForm.classList.add("active");
+        registerForm.classList.remove("active");
+
+        signInTab.classList.add("active");
+        registerTab.classList.remove("active");
+    });
+
+    registerTab.addEventListener("click", function () {
+        registerForm.classList.add("active");
+        signInForm.classList.remove("active");
+
+        registerTab.classList.add("active");
+        signInTab.classList.remove("active");
+    });
+  });
+
+  // cart functionalities
+  document.addEventListener("DOMContentLoaded", function () {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    function updateCartCount() {
+        document.getElementById("cart-count").textContent = cart.length;
+    }
+
+    function saveCart() {
+        localStorage.setItem("cart", JSON.stringify(cart));
+    }
+
+    function addToCart(event) {
+        const button = event.target;
+        const id = button.getAttribute("data-id");
+        const name = button.getAttribute("data-name");
+        const price = parseFloat(button.getAttribute("data-price"));
+
+        let existingItem = cart.find(item => item.id === id);
+        if (existingItem) {
+            existingItem.quantity += 1;
+        } else {
+            cart.push({ id, name, price, quantity: 1 });
+        }
+
+        saveCart();
+        updateCartCount();
+        alert("Added to cart!");
+    }
+
+    document.querySelectorAll(".add-to-cart").forEach(button => {
+        button.addEventListener("click", addToCart);
+    });
+
+    updateCartCount();
+  });
+
+
+    // Initial render
+    document.addEventListener('DOMContentLoaded', () => renderBooks(books));
+
+
+    /**
+     * Correct scrolling position upon page load for URLs containing hash links.
+     */
+    window.addEventListener('load', function(e) {
+      if (window.location.hash) {
+        if (document.querySelector(window.location.hash)) {
+          setTimeout(() => {
+            let section = document.querySelector(window.location.hash);
+            let scrollMarginTop = getComputedStyle(section).scrollMarginTop;
+            window.scrollTo({
+              top: section.offsetTop - parseInt(scrollMarginTop),
+              behavior: 'smooth'
+            });
+          }, 100);
+        }
       }
-    })
-  }
-  window.addEventListener('load', navbooksScrollspy);
-  document.addEventListener('scroll', navbooksScrollspy);
+    });
+
+    /**
+     * Navbooks Scrollspy
+     */
+    let navbookslinks = document.querySelectorAll('.navbooks a');
+
+    function navbooksScrollspy() {
+      navbookslinks.forEach(navbookslink => {
+        if (!navbookslink.hash) return;
+        let section = document.querySelector(navbookslink.hash);
+        if (!section) return;
+        let position = window.scrollY + 200;
+        if (position >= section.offsetTop && position <= (section.offsetTop + section.offsetHeight)) {
+          document.querySelectorAll('.navbooks a.active').forEach(link => link.classList.remove('active'));
+          navbookslink.classList.add('active');
+        } else {
+          navbookslink.classList.remove('active');
+        }
+      })
+    }
+    window.addEventListener('load', navbooksScrollspy);
+    document.addEventListener('scroll', navbooksScrollspy);
 
 })();
