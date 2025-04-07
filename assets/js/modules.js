@@ -11,7 +11,10 @@ async function loadHTML(url, targetId) {
             targetElement.innerHTML = html;
             // Initialize books module if this is the books section
             if (targetId === 'books-container') {
-                loadBooksModule();
+                // Wait for a short time to ensure DOM is updated
+                setTimeout(() => {
+                    loadBooksModule();
+                }, 100);
             }
         } else {
             console.error(`Target element with id '${targetId}' not found`);
@@ -33,17 +36,26 @@ async function loadHTML(url, targetId) {
 }
 
 // Function to load and initialize the books module
-function loadBooksModule() {
-    if (!document.querySelector('script[src="assets/js/books.js"]')) {
-        const script = document.createElement('script');
-        script.src = 'assets/js/books.js';
-        script.onload = function() {
-            console.log('Books.js loaded successfully');
-            if (typeof booksModule !== 'undefined') {
-                booksModule.init();
-            }
-        };
-        document.body.appendChild(script);
+async function loadBooksModule() {
+    console.log('Initializing books module...');
+    // Check if the container exists first
+    const container = document.getElementById('booksContainer');
+    if (!container) {
+        console.warn('Books container not found in DOM');
+        return;
+    }
+    
+    try {
+        // Import the books module dynamically
+        const booksModule = await import('./books.js');
+        if (booksModule.default) {
+            booksModule.default.init();
+            console.log('Books module initialized successfully');
+        } else {
+            console.warn('Books module not properly exported');
+        }
+    } catch (error) {
+        console.error('Error loading books module:', error);
     }
 }
 

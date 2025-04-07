@@ -1,0 +1,11 @@
+const BASE_URL = "http://localhost:8080/core-api";
+const LOGIN_URL = BASE_URL + "/api/user/login";
+const REGISTER_URL = BASE_URL + "/api/user/register";
+const BOOK_URL = BASE_URL + "/api/books/all";
+const ADD_BOOK_URL = BASE_URL + "/api/books/add";
+const DELETE_BOOK_URL = BASE_URL + "/api/books/delete";
+const CREATE_CART_URL = BASE_URL + "/api/carts/create";
+const CHECKOUT_URL = BASE_URL + "/api/carts/checkout";
+const ADD_TO_CART_URL = BASE_URL + "/api/carts/add-to-cart";
+const GET_ALL_CART_URL = BASE_URL + "/api/carts/get-all-cart";
+export { BASE_URL, LOGIN_URL, REGISTER_URL, BOOK_URL, ADD_BOOK_URL, DELETE_BOOK_URL, CREATE_CART_URL, CHECKOUT_URL, ADD_TO_CART_URL, GET_ALL_CART_URL };

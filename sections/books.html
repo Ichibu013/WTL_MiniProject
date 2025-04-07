@@ -7,23 +7,38 @@
 
     <!-- Filters and Search -->
     <div class="container filters">
-        <div class="row d-flex align-items-center justify-content-between flex-wrap">
-            <div class="col-md-12">
-                <label for="searchFilter">Search:</label>
-                <input type="text" id="searchFilter" class="form-control form-control-lg" placeholder="Search books..."/>
+        <!-- Responsive Filter Accordion for small screens -->
+        <div class="card d-md-none mb-3">
+            <div class="card-header">
+                <button class="btn btn-link" data-bs-toggle="collapse" data-bs-target="#filterCollapse" aria-expanded="false" aria-controls="filterCollapse">
+                    Filter Options
+                </button>
             </div>
-            <div class="col-md-3">
+            <div id="filterCollapse" class="collapse">
+                <div class="card-body">
+                    <!-- Filter content duplicated for small screen -->
+                    <!-- You can reuse the desktop filters inside here if needed -->
+                </div>
+            </div>
+        </div>
+
+        <div class="row d-flex align-items-center justify-content-between flex-wrap">
+            <div class="col-md-12 mb-3">
+                <label for="searchFilter">Search:</label>
+                <input type="text" id="searchFilter" class="form-control form-control-lg" placeholder="Search books..." aria-label="Search books" />
+            </div>
+            <div class="col-md-3 mb-3">
                 <label for="priceFilter">Price:</label>
-                <select id="priceFilter" class="form-control">
+                <select id="priceFilter" class="form-control" aria-label="Filter by price">
                     <option value="all">All</option>
                     <option value="0-10">$0 - $10</option>
                     <option value="10-20">$10 - $20</option>
                     <option value="20-50">$20 - $50</option>
                 </select>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3 mb-3">
                 <label for="languageFilter">Language:</label>
-                <select id="languageFilter" class="form-control">
+                <select id="languageFilter" class="form-control" aria-label="Filter by language">
                     <option value="all">All</option>
                     <option value="english">English</option>
                     <option value="hindi">Hindi</option>
@@ -31,9 +46,9 @@
                     <option value="german">German</option>
                 </select>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3 mb-3">
                 <label for="categoryFilter">Category:</label>
-                <select id="categoryFilter" class="form-control">
+                <select id="categoryFilter" class="form-control" aria-label="Filter by category">
                     <option value="all">All</option>
                     <option value="fiction">Fiction</option>
                     <option value="mystery">Mystery</option>
@@ -53,9 +68,9 @@
                     <option value="comics">Comics</option>
                 </select>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3 mb-3">
                 <label for="sortFilter">Sort By:</label>
-                <select id="sortFilter" class="form-control">
+                <select id="sortFilter" class="form-control" aria-label="Sort books">
                     <option value="default">Default</option>
                     <option value="price-low">Price: Low to High</option>
                     <option value="price-high">Price: High to Low</option>
@@ -70,57 +85,52 @@
         <p><span>Explore Our</span> <span class="description-title">Books Collection</span></p>
     </div>
 
+    <!-- Loading Spinner -->
+    <div id="booksLoading" class="text-center my-4" style="display: none;">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+
     <div class="container mt-4">
         <div id="booksContainer" class="row row-cols-2 row-cols-sm-4 row-cols-lg-6 g-4">
-            <!-- Book cards will be dynamically inserted here -->
+            <!-- Example Book Card (you can clone dynamically) -->
+            <!--
+            <div class="col book-card" data-price="15" data-language="english" data-category="fiction">
+                <div class="card h-100">
+                    <img src="cover.jpg" class="card-img-top" alt="Book Title cover image" />
+                    <div class="card-body">
+                        <h5 class="card-title">Book Title</h5>
+                        <p class="card-text">Author Name</p>
+                        <p class="card-text">$15.00</p>
+                    </div>
+                </div>
+            </div>
+            -->
         </div>
     </div>
 
     <!-- Book Detail Modal -->
     <div class="modal-overlay" id="modalOverlay">
-        <div id="bookDetailModal" class="modal">
+        <div id="bookDetailModal" class="modal" role="dialog" aria-labelledby="modalTitle" aria-modal="true">
             <div class="modal-content">
-                <span class="closeModal" onclick="booksModule.closeModal()">&times;</span>
-                <div class="modal-body">
-                    <div class="modal-left">
+                <span class="closeModal" onclick="window.booksModule.closeModal()" aria-label="Close modal">&times;</span>
+                <div class="modal-body d-flex flex-column flex-md-row">
+                    <div class="modal-left me-md-4">
                         <h3 id="modalTitle"></h3>
                         <p><strong>Author:</strong> <span id="modalAuthor"></span></p>
                         <p><strong>Price:</strong> $<span id="modalPrice"></span></p>
                         <p><strong>Description:</strong></p>
                         <p id="modalDescription"></p>
-                        <button id="addToCartBtn" class="add-to-cart">
+                        <button id="addToCartBtn" class="add-to-cart btn btn-primary mt-3">
                             Add to Cart
                         </button>
                     </div>
                     <div class="modal-right">
-                        <img id="modalImage" src="" alt="Book Image" />
+                        <img id="modalImage" src="" alt="Book cover image" class="img-fluid" />
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
 </section>
-
-<!-- Initialize books module after content is loaded -->
-<script>
-    // Wait for the DOM to be fully loaded
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initializeBooks);
-    } else {
-        initializeBooks();
-    }
-
-    function initializeBooks() {
-        // Load the books.js script
-        const script = document.createElement('script');
-        script.src = 'assets/js/books.js';
-        script.onload = function() {
-            console.log('Books.js loaded successfully');
-            if (typeof booksModule !== 'undefined') {
-                booksModule.init();
-            }
-        };
-        document.body.appendChild(script);
-    }
-</script>
