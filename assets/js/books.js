@@ -318,4 +318,6 @@ const booksModule = {
     }
 };
 
+window.booksModule = booksModule;
+
 export default booksModule;
