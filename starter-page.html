@@ -1,151 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Book Detail Modal</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-    }
+    <meta charset="UTF-8">
+    <title>Dropdown Login Box</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 50px;
+        }
 
-    /* Modal Overlay */
-    .modal-overlay {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100vw; height: 100vh;
-      background-color: rgba(0, 0, 0, 0.6);
-      justify-content: center;
-      align-items: center;
-      z-index: 999;
-    }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
 
-    /* Modal Box */
-    .modal {
-      background-color: #fff;
-      width: 60vw;
-      height: 60vh;
-      border-radius: 10px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      position: relative;
-    }
+        .dropdown-toggle {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
 
-    .modal-content {
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-    }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 250px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            z-index: 1;
+            border-radius: 5px;
+        }
 
-    .modal-body {
-      display: flex;
-      flex: 1;
-      padding: 20px;
-      gap: 30px;
-    }
+        .dropdown-content input[type="text"],
+        .dropdown-content input[type="password"] {
+            width: 100%;
+            padding: 8px;
+            margin: 8px 0;
+            box-sizing: border-box;
+        }
 
-    .modal-left {
-      flex: 1;
-    }
+        .dropdown-content input[type="submit"] {
+            width: 100%;
+            background-color: #2ecc71;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
 
-    .modal-right {
-      flex: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .modal-right img {
-      max-width: 100%;
-      max-height: 100%;
-      border-radius: 8px;
-      object-fit: cover;
-    }
-
-    .closeModal {
-      position: absolute;
-      top: 15px;
-      right: 20px;
-      font-size: 24px;
-      font-weight: bold;
-      color: #444;
-      cursor: pointer;
-    }
-
-    .add-to-cart {
-      margin-top: 15px;
-      padding: 10px 20px;
-      font-size: 16px;
-      background-color: #4CAF50;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-
-    .add-to-cart:hover {
-      background-color: #45a049;
-    }
-  </style>
+        .dropdown.show .dropdown-content {
+            display: block;
+        }
+    </style>
 </head>
 <body>
+<header>
+    <h1>Dropdown Login Box</h1>
+    <a>
+        <div class="dropdown" id="loginDropdown">
+            <button class="dropdown-toggle" onclick="toggleDropdown()">Login</button>
+            <div class="dropdown-content">
+                <form>
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required>
 
-<!-- Trigger Button -->
-<button onclick="openModal()">Open Book Detail Modal</button>
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
 
-<!-- Modal Overlay -->
-<div class="modal-overlay" id="modalOverlay">
-  <div id="bookDetailModal" class="modal">
-    <div class="modal-content">
-      <span class="closeModal" onclick="booksModule.closeModal()">&times;</span>
-      <div class="modal-body">
-        <div class="modal-left">
-          <h3 id="modalTitle"></h3>
-          <p><strong>Author:</strong> <span id="modalAuthor"></span></p>
-          <p><strong>Price:</strong> $<span id="modalPrice">19.99</span></p>
-          <p><strong>Description:</strong></p>
-          <p id="modalDescription">This is a great book that covers everything about something interesting.</p>
-          <button class="add-to-cart" data-id="1" data-name="Book Name" data-price="10">
-            Add to Cart
-          </button>
+                    <input type="submit" value="Login">
+                </form>
+            </div>
         </div>
-        <div class="modal-right">
-          <img id="modalImage" src="https://via.placeholder.com/200x300" alt="Book Image" />
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
+    </a>
+</header>
 <script>
-  const booksModule = {
-    openModal() {
-      document.getElementById('modalOverlay').style.display = 'flex';
-
-      // document.getElementById("modalImage").src = book.imageUrl;
-      document.getElementById("modalTitle").textContent = "Sample Book Title";
-      document.getElementById("modalAuthor").textContent = "John Doe";
-      document.getElementById("modalPrice").textContent = book.price.toFixed(2);
-      document.getElementById("modalDescription").textContent = book.description;
-
-    },
-    closeModal() {
-      document.getElementById('modalOverlay').style.display = 'none';
+    function toggleDropdown() {
+        document.getElementById("loginDropdown").classList.toggle("show");
     }
-  };
 
-  function openModal() {
-    booksModule.openModal();
-  }
-
-  // Optional: Close on ESC key
-  document.addEventListener('keydown', function (event) {
-    if (event.key === 'Escape') {
-      booksModule.closeModal();
+    // Optional: close dropdown if clicked outside
+    window.onclick = function (e) {
+        if (!e.target.matches('.dropdown-toggle')) {
+            let dropdown = document.getElementById("loginDropdown");
+            if (dropdown.classList.contains('show')) {
+                dropdown.classList.remove('show');
+            }
+        }
     }
-  });
 </script>
 
 </body>

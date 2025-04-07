@@ -1,37 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Cart</title>
-    <script defer src="main.js"></script>
-</head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Shopping Cart - BookSwamp</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+
+    <!-- Favicons -->
+    <link href="../assets/img/favicon.png" rel="icon">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Amatic+SC:wght@400;700&display=swap"
+          rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="../assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="../assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+    <!-- Main CSS File -->
+    <link href="../assets/css/main.css" rel="stylesheet">
+    /head>
 <body>
-    <h1>Your Cart</h1>
-    <div id="cart-items"></div>
-    <button onclick="clearCart()">Clear Cart</button>
-    <button onclick="checkout()">Checkout</button>
+    <!-- Header -->
+    <header id="header" class="header d-flex align-items-center sticky-top">
+        <div class="container position-relative d-flex align-items-center justify-content-between">
+            <a href="../index.html" class="logo d-flex align-items-center me-auto me-xl-0">
+                <img src="../assets/img/logobook.jpg" alt=""> 
+                <h1 class="sitename">BookSwamp</h1>
+                <span>.</span>
+            </a>
+        </div>
+    </header>
+
+    <main class="cart-container">
+        <div class="cart-title" data-aos="fade-up">
+            <h1>Shopping Cart</h1>
+            <p>Review and manage your selected books</p>
+        </div>
+
+        <div class="cart-items" id="cart-items" data-aos="fade-up" data-aos-delay="100">
+            <!-- Cart items will be dynamically loaded here -->
+        </div>
+
+        <div class="cart-summary" data-aos="fade-up" data-aos-delay="200">
+            <div class="cart-total">
+                <h3>Total Amount:</h3>
+                <div class="total-amount">$<span id="cart-total">0.00</span></div>
+            </div>
+            <div class="cart-actions">
+                <button class="cart-btn clear-cart-btn" onclick="clearCart()">Clear Cart</button>
+                <button class="cart-btn checkout-btn" onclick="checkout()">Proceed to Checkout</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Success Modal -->
+    <div class="success-modal" id="successModal">
+        <div class="success-modal-content">
+            <i class="bi bi-check-circle"></i>
+            <h3>Purchase Successful!</h3>
+            <p>Thank you for shopping with BookSwamp. Your order has been placed successfully.</p>
+            <div class="redirect-message">Redirecting to homepage...</div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="footer" class="footer dark-background">
+        <div class="container copyright text-center mt-4">
+            <p>© <span>Copyright</span> <strong class="px-1 sitename">BookSwamp</strong> <span>All Rights Reserved</span></p>
+            <div class="credits">
+                <p>Designed by Ansh & Divesh</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Vendor JS Files -->
+    <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/vendor/aos/aos.js"></script>
+    <script src="../assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="../assets/vendor/purecounter/purecounter_vanilla.js"></script>
+    <script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
 
     <script>
         function loadCart() {
             let cart = JSON.parse(localStorage.getItem("cart")) || [];
             let cartItemsDiv = document.getElementById("cart-items");
+            let cartTotal = 0;
             cartItemsDiv.innerHTML = "";
 
             if (cart.length === 0) {
-                cartItemsDiv.innerHTML = "<p>Your cart is empty</p>";
+                cartItemsDiv.innerHTML = `
+                    <div class="empty-cart">
+                        <i class="bi bi-cart-x"></i>
+                        <h3>Your cart is empty</h3>
+                        <p>Looks like you haven't added any books to your cart yet.</p>
+                        <a href="../index.html" class="continue-shopping">Continue Shopping</a>
+                    </div>
+                `;
+                document.getElementById("cart-total").textContent = "0.00";
                 return;
             }
 
             cart.forEach((item, index) => {
+                cartTotal += item.price * item.quantity;
                 let div = document.createElement("div");
+                div.className = "cart-item";
                 div.innerHTML = `
-                    <p>${item.name} - $${item.price} x ${item.quantity} 
-                        <button onclick="updateQuantity(${index}, -1)">-</button>
-                        <button onclick="updateQuantity(${index}, 1)">+</button>
-                        <button onclick="removeItem(${index})">Remove</button>
-                    </p>
+                    <div class="cart-item-info">
+                        <div class="cart-item-name">${item.name}</div>
+                        <div class="cart-item-price">$${item.price.toFixed(2)}</div>
+                        <div class="cart-item-quantity">
+                            <button class="quantity-btn" onclick="updateQuantity(${index}, -1)">-</button>
+                            <span class="quantity-display">${item.quantity}</span>
+                            <button class="quantity-btn" onclick="updateQuantity(${index}, 1)">+</button>
+                        </div>
+                    </div>
+                    <div class="cart-item-actions">
+                        <button class="remove-btn" onclick="removeItem(${index})">
+                            <i class="bi bi-trash"></i> Remove
+                        </button>
+                    </div>
                 `;
                 cartItemsDiv.appendChild(div);
             });
+
+            document.getElementById("cart-total").textContent = cartTotal.toFixed(2);
         }
 
         function updateQuantity(index, change) {
@@ -59,10 +158,26 @@
         }
 
         function checkout() {
-            alert("Redirecting to checkout...");
+            // Show success modal
+            const modal = document.getElementById('successModal');
+            modal.style.display = 'flex';
+
+            // Clear cart
             localStorage.removeItem("cart");
-            window.location.href = "checkout.html";
+
+            // Redirect after 2 seconds
+            setTimeout(() => {
+                window.location.href = "../index.html";
+            }, 2000);
         }
+
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            easing: 'ease-in-out',
+            once: true,
+            mirror: false
+        });
 
         loadCart();
     </script>

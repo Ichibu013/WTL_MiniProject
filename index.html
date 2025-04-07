@@ -32,19 +32,35 @@
 
 <body class="index-page">
 
-<!-- Header Container -->
-<div id="header-container">
-    <!-- Fallback header content -->
-    <header id="header" class="header d-flex align-items-center sticky-top">
-        <div class="container position-relative d-flex align-items-center justify-content-between">
-            <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
-                <img src="assets/img/logobook.jpg" alt="">
-                <h1 class="sitename">BookSwamp</h1>
-                <span>.</span>
-            </a>
-        </div>
-    </header>
-</div>
+<!-- Header -->
+<header id="header" class="header d-flex align-items-center sticky-top">
+  <div class="container position-relative d-flex align-items-center justify-content-between">
+
+    <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
+      <!-- Uncomment the line below if you also wish to use an image logo -->
+      <img src="assets/img/logobook.jpg" alt=""> 
+      <h1 class="sitename">BookSwamp</h1>
+      <span>.</span>
+    </a>
+
+    <nav id="navbooks" class="navbooks">
+      <ul>
+        <li><a href="#hero" class="active">Home<br></a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#categories">Categories</a></li>
+        <li><a href="#books">Explore Books</a></li>
+        <li><a href="#authors">Authors</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+    </nav>
+    <a href="forms/cart.html" class="cart-icon">
+      🛒 <span id="cart-count">0</span>
+    </a>
+    <a class="btn-getstarted" href="loginform.html">Login</a>
+    
+  </div>
+</header>
 
 <main class="main">
 
@@ -68,20 +84,10 @@
 
 </main>
 
-<!-- Footer Container -->
-<div id="footer-container">
-    <!-- Fallback footer content -->
-    <footer id="footer" class="footer dark-background">
-        <div class="container">
-            <div class="row gy-3">
-                <div class="col-lg-3 col-md-6">
-                    <h4>BookSwamp</h4>
-                    <p>Loading...</p>
-                </div>
-            </div>
-        </div>
-    </footer>
+<div id="footer-container" class="footer">
+    <!-- Footer will be loaded here -->
 </div>
+
 <!-- Scroll Top -->
 <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i
         class="bi bi-arrow-up-short"></i></a>

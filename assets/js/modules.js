@@ -66,7 +66,6 @@ function initializeComponents() {
 // Load all sections when the page loads
 document.addEventListener('DOMContentLoaded', function() {
     const sections = [
-        { url: 'header.html', id: 'header-container' },
         { url: 'sections/hero.html', id: 'hero-container' },
         { url: 'sections/about.html', id: 'about-container' },
         { url: 'sections/categories.html', id: 'categories-container' },

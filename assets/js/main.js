@@ -182,139 +182,6 @@ document.addEventListener('DOMContentLoaded', function() {
       this.classList.toggle("active");
     });
   });
-  
-  // Function to navigate to the selected category
-function filterBooks(category) {
-  // Remove 'active' class from all books
-  document.querySelectorAll('.books-item').forEach(item => {
-    item.style.display = 'none';
-  });
-
-  // Show books that match the selected category
-  document.querySelectorAll(`.books-item[data-category="${category}"]`).forEach(item => {
-    item.style.display = 'block';
-  });
-}
-
-  // Sample array of book objects
-  const books = [
-    {
-      id: 1,
-      title: "The Enchanted Forest",
-      author: "Ava Green",
-      price: 15.00,
-      category: "fantasy",
-      language: "english",
-      imageUrl: "path/to/enchanted_forest.jpg",
-      description: "An epic journey through a mystical forest filled with magical creatures.",
-      isbn: "978-1234567890",
-      publishDate: "2023-01-15",
-      publisher: "Fantasy Press",
-      pageCount: 320,
-      rating: 4.8,
-      reviews: 450
-    }
-    // Add remaining book objects here
-  ];
-
-  // Function to render books based on filters
-  function renderBooks(filteredBooks) {
-    const container = document.getElementById('booksContainer');
-    container.innerHTML = ''; // Clear previous entries
-
-    filteredBooks.forEach(book => {
-      const bookCard = document.createElement('div');
-      bookCard.className = 'col book-card';
-      bookCard.dataset.price = book.price;
-      bookCard.dataset.language = book.language.toLowerCase();
-      bookCard.dataset.author = book.author.toLowerCase();
-      bookCard.dataset.category = book.category.toLowerCase();
-
-      bookCard.innerHTML = `
-        <div class="card h-100 shadow-sm">
-          <img src="${book.imageUrl}" class="card-img-top" alt="${book.title}">
-          <div class="card-body">
-            <h5 class="card-title">${book.title}</h5>
-            <p class="card-text">
-              <strong>Author:</strong> ${book.author}<br>
-              <strong>Price:</strong> $${book.price.toFixed(2)}<br>
-              <strong>Category:</strong> ${book.category}<br>
-              <strong>Rating:</strong> ${book.rating} ⭐ (${book.reviews} reviews)
-            </p>
-          </div>
-        </div>
-      `;
-
-      // Add click event to show detailed view
-      bookCard.addEventListener('click', () => booksModule.openModal(book));
-
-      container.appendChild(bookCard);
-    });
-  }
-
-  // Function to apply filters
-  function applyFilters() {
-    const priceFilter = document.getElementById('priceFilter').value;
-    const languageFilter = document.getElementById('languageFilter').value.toLowerCase();
-    const authorFilter = document.getElementById('authorFilter').value.toLowerCase();
-    const categoryFilter = document.getElementById('BookCategoryFilter').value.toLowerCase();
-
-    const filteredBooks = books.filter(book => {
-      const matchesPrice = priceFilter === 'all' || (book.price >= parseInt(priceFilter.split('-')[0]) && book.price <= parseInt(priceFilter.split('-')[1]));
-      const matchesLanguage = languageFilter === 'all' || book.language.toLowerCase() === languageFilter;
-      const matchesAuthor = authorFilter === 'all' || book.author.toLowerCase().includes(authorFilter);
-      const matchesCategory = categoryFilter === 'all' || book.category.toLowerCase() === categoryFilter;
-
-      return matchesPrice && matchesLanguage && matchesAuthor && matchesCategory;
-    });
-
-    renderBooks(filteredBooks);
-  }
-
-  // Function to show book details in the modal
-  function showBookDetails(book) {
-    document.getElementById("modalImage").src = book.imageUrl;
-    document.getElementById("modalTitle").textContent = book.title;
-    document.getElementById("modalAuthor").textContent = book.author;
-    document.getElementById("modalPrice").textContent = book.price.toFixed(2);
-    document.getElementById("modalDescription").textContent = book.description;
-    
-    // Add additional book details if available
-    const additionalDetails = document.createElement('div');
-    additionalDetails.innerHTML = `
-      <p><strong>ISBN:</strong> ${book.isbn}</p>
-      <p><strong>Publisher:</strong> ${book.publisher}</p>
-      <p><strong>Published:</strong> ${book.publishDate}</p>
-      <p><strong>Pages:</strong> ${book.pageCount}</p>
-      <p><strong>Rating:</strong> ${book.rating} ⭐ (${book.reviews} reviews)</p>
-    `;
-    document.getElementById("modalDescription").after(additionalDetails);
-    
-    document.getElementById("bookDetailModal").style.display = "block";
-  }
-
-  // Function to close the modal
-  function closeModal() {
-    document.getElementById("bookDetailModal").style.display = "none";
-  }
-
-  document.addEventListener("DOMContentLoaded", function () {
-    const modal = document.getElementById("bookDetailModal");
-    const closeButton = document.querySelector(".closeModal"); // Fix: Select using class
-
-    if (closeButton) {
-        closeButton.addEventListener("click", function () {
-            modal.style.display = "none";
-        });
-    }
-
-    // Optional: Close modal when clicking outside the content box
-    window.addEventListener("click", function (event) {
-        if (event.target === modal) {
-            modal.style.display = "none";
-        }
-    });
-  });
 
   document.addEventListener("DOMContentLoaded", function () {
     const signInTab = document.getElementById("signInTab");
@@ -424,5 +291,36 @@ function filterBooks(category) {
     }
     window.addEventListener('load', navbooksScrollspy);
     document.addEventListener('scroll', navbooksScrollspy);
+
+  // Login dropdown functionality
+  function toggleLoginForm() {
+    const dropdown = document.getElementById('loginDropdown');
+    dropdown.classList.toggle('show');
+  }
+
+  // Close dropdown when clicking outside
+  window.addEventListener('click', function(event) {
+    const dropdown = document.getElementById('loginDropdown');
+    const loginButton = document.querySelector('.btn-getstarted');
+    
+    if (!event.target.matches('.btn-getstarted') && !event.target.closest('.dropdown-content')) {
+      if (dropdown.classList.contains('show')) {
+        dropdown.classList.remove('show');
+      }
+    }
+  });
+
+  // Handle login form submission
+  document.getElementById('loginForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const email = this.querySelector('input[type="email"]').value;
+    const password = this.querySelector('input[type="password"]').value;
+    
+    // Here you would typically handle the login logic
+    console.log('Login attempt:', { email, password });
+    
+    // For demo purposes, just close the dropdown
+    document.getElementById('loginDropdown').classList.remove('show');
+  });
 
 })();
