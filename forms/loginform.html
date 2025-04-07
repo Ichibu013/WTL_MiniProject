@@ -129,16 +129,16 @@
   </section>
 </main>
 
-<div id="footer-container" class="footer">
-    <!-- Footer will be loaded here -->
-</div>
-
 <!-- Scroll Top -->
 <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i
         class="bi bi-arrow-up-short"></i></a>
 
 <!-- Preloader -->
 <div id="preloader"></div>
+
+<div id="footer-container" class="footer">
+    <!-- Footer will be loaded here -->
+</div>
 
 <!-- Vendor JS Files -->
 <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -150,8 +150,6 @@
 
 <!-- Main JS File -->
 <script src="../assets/js/main.js"></script>
-<!-- Modules JS File -->
-<script src="../assets/js/modules.js"></script>
 
 <script>
 function toggleForm(formType) {
@@ -172,6 +170,17 @@ function toggleForm(formType) {
     registerTab.classList.add('active');
   }
 }
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  fetch('../footer.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('footer-container').innerHTML = data;
+    })
+    .catch(error => console.error('Error loading footer:', error));
+});
 </script>
 
 </body>
