@@ -105,7 +105,7 @@
               <form class="php-email-form">
                 <div class="row gy-4">
                   <div class="col-lg-6">
-                    <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+                    <input type="text" name="username" class="form-control" id="register-username" placeholder="Your Username" required>
                   </div>
                   <div class="col-lg-6">
                     <input type="email" class="form-control" name="email" id="register-email" placeholder="Your Email" required>
@@ -216,6 +216,7 @@ document.addEventListener("DOMContentLoaded", function() {
         console.log(data);
         localStorage.setItem('userID', data.id);
         localStorage.setItem('username', data.username);
+        localStorage.setItem('role', data.role);
         // Redirect to home page or dashboard
         window.location.href = '../index.html';
       })
@@ -229,13 +230,13 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementById('register-form').addEventListener('submit', function(e) {
       e.preventDefault();
       
-      const name = document.getElementById('name').value;
+      const username = document.getElementById('register-username').value;
       const email = document.getElementById('register-email').value;
       const password = document.getElementById('register-password').value;
 
       // Create the request body
       const registerRequestBody = {
-        name: name,
+        username: username,
         email: email,
         password: password
       };

@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8b5d1e28-c0b0-4fdc-8971-7d7e4c7706d5" name="Changes" comment="added manage form">
+    <list default="true" id="8b5d1e28-c0b0-4fdc-8971-7d7e4c7706d5" name="Changes" comment="Login added">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/url.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/url.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/forms/loginform.html" beforeDir="false" afterPath="$PROJECT_DIR$/forms/loginform.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sections/hero.html" beforeDir="false" afterPath="$PROJECT_DIR$/sections/hero.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,7 +92,7 @@
       <workItem from="1743915455246" duration="4680000" />
       <workItem from="1744003332281" duration="731000" />
       <workItem from="1744008065096" duration="16625000" />
-      <workItem from="1744081217976" duration="2236000" />
+      <workItem from="1744081217976" duration="4065000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <option name="closed" value="true" />
@@ -176,7 +174,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744047403399</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Login added">
+      <option name="closed" value="true" />
+      <created>1744091525316</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1744091525316</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -203,6 +209,7 @@
     <MESSAGE value="Construct with Books backend" />
     <MESSAGE value="fix" />
     <MESSAGE value="added manage form" />
-    <option name="LAST_COMMIT_MESSAGE" value="added manage form" />
+    <MESSAGE value="Login added" />
+    <option name="LAST_COMMIT_MESSAGE" value="Login added" />
   </component>
 </project>
