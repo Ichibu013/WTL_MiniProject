@@ -8,12 +8,35 @@ async function loadHTML(url, targetId) {
         const html = await response.text();
         const targetElement = document.getElementById(targetId);
         if (targetElement) {
-            targetElement.innerHTML = html;
+            // Create a temporary container
+            const temp = document.createElement('div');
+            temp.innerHTML = html;
+            
+            // Move all child nodes to the target element
+            while (temp.firstChild) {
+                targetElement.appendChild(temp.firstChild);
+            }
+
             // Initialize books module if this is the books section
             if (targetId === 'books-container') {
                 // Wait for a short time to ensure DOM is updated
                 setTimeout(() => {
                     loadBooksModule();
+                }, 100);
+            }
+            // Initialize hero section if this is the hero section
+            if (targetId === 'hero-container') {
+                console.log('Hero section loaded, initializing...');
+                // Wait for a short time to ensure DOM is updated
+                setTimeout(async () => {
+                    try {
+                        const heroModule = await import('./hero.js');
+                        heroModule.initHeroSection();
+                        console.log('Dispatching loginStateChanged event...');
+                        window.dispatchEvent(new Event('loginStateChanged'));
+                    } catch (error) {
+                        console.error('Error loading hero module:', error);
+                    }
                 }, 100);
             }
         } else {
