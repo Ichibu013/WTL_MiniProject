@@ -89,7 +89,7 @@
             <form id="sign-in-form" class="php-email-form">
               <div class="row gy-4">
                 <div class="col-lg-12">
-                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required="">
+                  <input type="text" class="form-control" name="username" id="username" placeholder="Your Username" required="">
                 </div>
                 <div class="col-lg-12">
                   <input type="password" class="form-control" name="password" id="password" placeholder="Your Password" required="">
@@ -150,8 +150,9 @@
 
 <!-- Main JS File -->
 <script src="../assets/js/main.js"></script>
-
+<script src="../assets/js/url.js" type="module"></script>
 <script>
+// Global toggleForm function
 function toggleForm(formType) {
   const signInForm = document.getElementById('sign-in-form');
   const registerForm = document.getElementById('register-form');
@@ -170,16 +171,101 @@ function toggleForm(formType) {
     registerTab.classList.add('active');
   }
 }
-</script>
 
-<script>
 document.addEventListener("DOMContentLoaded", function() {
+  // Load footer
   fetch('../footer.html')
     .then(response => response.text())
     .then(data => {
       document.getElementById('footer-container').innerHTML = data;
     })
     .catch(error => console.error('Error loading footer:', error));
+
+  // Import URLs
+  import("../assets/js/url.js").then(module => {
+    const { LOGIN_URL, REGISTER_URL } = module;
+
+    // Handle sign-in form submission
+    document.getElementById('sign-in-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+
+      // Create the request body
+      const loginRequestBody = {
+        username: username,
+        password: password
+      };
+
+      // Make API call to Spring Boot backend
+      fetch(LOGIN_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(loginRequestBody)
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Login failed');
+        }
+        return response.json();
+      })
+      .then(data => {
+        console.log(data);
+        localStorage.setItem('userID', data.id);
+        localStorage.setItem('username', data.username);
+        // Redirect to home page or dashboard
+        window.location.href = '../index.html';
+      })
+      .catch(error => {
+        console.error('Login error:', error);
+        alert('Login failed. Please check your credentials and try again.');
+      });
+    });
+
+    // Handle register form submission
+    document.getElementById('register-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('register-email').value;
+      const password = document.getElementById('register-password').value;
+
+      // Create the request body
+      const registerRequestBody = {
+        name: name,
+        email: email,
+        password: password
+      };
+
+      // Make API call to Spring Boot backend
+      fetch(REGISTER_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(registerRequestBody)
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Registration failed');
+        }
+        return response.json();
+      })
+      .then(data => {
+        // Handle successful registration
+        console.log('Registration successful:', data);
+        alert('Registration successful! Please login.');
+        toggleForm('sign-in');
+      })
+      .catch(error => {
+        console.error('Registration error:', error);
+        alert('Registration failed. Please try again.');
+      });
+    });
+  });
 });
 </script>
 

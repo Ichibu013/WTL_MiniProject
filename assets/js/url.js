@@ -1,6 +1,6 @@
 const BASE_URL = "http://localhost:8080/core-api";
-const LOGIN_URL = BASE_URL + "/api/user/login";
-const REGISTER_URL = BASE_URL + "/api/user/register";
+const LOGIN_URL = BASE_URL + "/api/users/login";
+const REGISTER_URL = BASE_URL + "/api/users/register";
 const BOOK_URL = BASE_URL + "/api/books/all";
 const ADD_BOOK_URL = BASE_URL + "/api/books/add";
 const DELETE_BOOK_URL = BASE_URL + "/api/books/delete";
