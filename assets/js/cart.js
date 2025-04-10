@@ -48,6 +48,7 @@ export async function fetchCartData() {
         console.log('Cart data:', cartData);
         localStorage.setItem('cartID',cartData.id)
         saveCartBooksToLocalStorage(cartData.bookID)
+        updateCartCount(cartData.bookID.length); // Update the cart count with the number of books
 
     } catch (error) {
         console.error('Error fetching cart data:', error);

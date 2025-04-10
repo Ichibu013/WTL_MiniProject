@@ -1,4 +1,5 @@
 import { BOOK_URL, ADD_TO_CART_URL } from "./url.js";
+import {fetchCartData} from "./cart.js";
 
 // Initialize books module when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
@@ -299,6 +300,7 @@ const booksModule = {
         if (cartBtn) {
             cartBtn.onclick = async () => {
                 try {
+
                     const response = await fetch(ADD_TO_CART_URL, {
                         method: 'PATCH',
                         headers: {
@@ -316,6 +318,10 @@ const booksModule = {
                         const cartSuccessModal = document.getElementById('cartSuccessModal');
                         cartSuccessModalOverlay.style.display = 'flex';
                         cartSuccessModal.style.display = 'block';
+
+                        // Fetch updated cart data from server
+                        await fetchCartData();
+
                         setTimeout(() => {
                             cartSuccessModalOverlay.style.display = 'none';
                             cartSuccessModal.style.display = 'none';
