@@ -1,4 +1,4 @@
-import { BOOK_URL } from "./url.js";
+import { BOOK_URL, ADD_TO_CART_URL } from "./url.js";
 
 // Initialize books module when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
@@ -297,9 +297,30 @@ const booksModule = {
 
         const cartBtn = document.getElementById("addToCartBtn");
         if (cartBtn) {
-            cartBtn.onclick = () => {
-                alert(`Added "${book.title}" to cart!`);
-                this.closeModal();
+            cartBtn.onclick = async () => {
+                try {
+                    const response = await fetch(ADD_TO_CART_URL, {
+                        method: 'PATCH',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            cartID: localStorage.getItem('cartID'),
+                            bookID: book.id
+                        })
+                    });
+
+                    if (response.ok) {
+                        alert(`Added "${book.title}" to cart!`);
+                        this.closeModal();
+                    } else {
+                        const data = await response.json();
+                        alert(`Failed to add to cart: ${data.message || 'Unknown error'}`);
+                    }
+                } catch (error) {
+                    console.error('Error adding to cart:', error);
+                    alert('Failed to add item to cart. Please try again.');
+                }
             };
         }
 
