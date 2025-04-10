@@ -6,9 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="8b5d1e28-c0b0-4fdc-8971-7d7e4c7706d5" name="Changes" comment="updated">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/auth.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/cart.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/cart.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/url.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/url.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/forms/cart.html" beforeDir="false" afterPath="$PROJECT_DIR$/forms/cart.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,20 +49,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;branch-1&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/ansha/OneDrive/Documents/TE/SEM-2/WTL/Mini Project/Front End/Online Book Store zip/Online Book Store/assets/img&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "JavaScript Debug.index.html.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "branch-1",
+    "last_opened_file_path": "C:/Users/ansha/OneDrive/Documents/TE/SEM-2/WTL/Mini Project/Front End/Online Book Store zip/Online Book Store/assets/img",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\ansha\OneDrive\Documents\TE\SEM-2\WTL\Mini Project\Front End\Online Book Store zip\Online Book Store\assets\img" />
@@ -244,7 +244,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744303347716</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="updated">
+      <option name="closed" value="true" />
+      <created>1744304071408</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1744304071408</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

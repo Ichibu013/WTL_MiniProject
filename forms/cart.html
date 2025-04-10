@@ -27,75 +27,79 @@
     <link href="../assets/css/main.css" rel="stylesheet">
 </head>
 <body>
-    <!-- Header -->
-    <header id="header" class="header d-flex align-items-center sticky-top">
-        <div class="container position-relative d-flex align-items-center justify-content-between">
-            <a href="../index.html" class="logo d-flex align-items-center me-auto me-xl-0">
-                <img src="../assets/img/logobook.jpg" alt=""> 
-                <h1 class="sitename">BookSwamp</h1>
-                <span>.</span>
-            </a>
-        </div>
-    </header>
+<!-- Header -->
+<header id="header" class="header d-flex align-items-center sticky-top">
+    <div class="container position-relative d-flex align-items-center justify-content-between">
+        <a href="../index.html" class="logo d-flex align-items-center me-auto me-xl-0">
+            <img src="../assets/img/logobook.jpg" alt="">
+            <h1 class="sitename">BookSwamp</h1>
+            <span>.</span>
+        </a>
+    </div>
+</header>
 
-    <main class="cart-container">
-        <div class="cart-title" data-aos="fade-up">
-            <h1>Shopping Cart</h1>
-            <p>Review and manage your selected books</p>
-        </div>
-
-        <div class="cart-items" id="cart-items" data-aos="fade-up" data-aos-delay="100">
-            <!-- Cart items will be dynamically loaded here -->
-        </div>
-
-        <div class="cart-summary" data-aos="fade-up" data-aos-delay="200">
-            <div class="cart-total">
-                <h3>Total Amount:</h3>
-                <div class="total-amount">$<span id="cart-total">0.00</span></div>
-            </div>
-            <div class="cart-actions">
-                <button class="cart-btn clear-cart-btn" onclick="clearCart()">Clear Cart</button>
-                <button class="cart-btn checkout-btn" onclick="checkout()">Proceed to Checkout</button>
-            </div>
-        </div>
-    </main>
-
-    <!-- Success Modal -->
-    <div class="success-modal" id="successModal">
-        <div class="success-modal-content">
-            <i class="bi bi-check-circle"></i>
-            <h3>Purchase Successful!</h3>
-            <p>Thank you for shopping with BookSwamp. Your order has been placed successfully.</p>
-            <div class="redirect-message">Redirecting to homepage...</div>
-        </div>
+<main class="cart-container">
+    <div class="cart-title" data-aos="fade-up">
+        <h1>Shopping Cart</h1>
+        <p>Your selected books</p>
     </div>
 
-    <!-- Footer -->
-    <div id="footer-placeholder"></div>
+    <div class="cart-items" id="cart-items" data-aos="fade-up" data-aos-delay="100">
+        <!-- Cart items will be dynamically loaded here -->
+    </div>
 
-    <!-- Vendor JS Files -->
-    <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="../assets/vendor/aos/aos.js"></script>
-    <script src="../assets/vendor/glightbox/js/glightbox.min.js"></script>
-    <script src="../assets/vendor/purecounter/purecounter_vanilla.js"></script>
-    <script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <div class="cart-summary" data-aos="fade-up" data-aos-delay="200">
+        <div class="cart-total">
+            <h3>Total Amount:</h3>
+            <div class="total-amount">$<span id="cart-total">0.00</span></div>
+        </div>
+        <div class="cart-actions">
+            <button class="cart-btn clear-cart-btn" id="clear-cart-btn">Clear Cart</button>
+            <button class="cart-btn checkout-btn" id="checkout-btn">Proceed to Checkout
+            </button>
+        </div>
+    </div>
+</main>
 
-    <script>
-        // Load footer
-        fetch('../footer.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('footer-placeholder').innerHTML = data;
-            });
+<!-- Success Modal -->
+<div class="success-modal" id="successModal">
+    <div class="success-modal-content">
+        <i class="bi bi-check-circle"></i>
+        <h3>Purchase Successful!</h3>
+        <p>Thank you for shopping with BookSwamp. Your order has been placed successfully.</p>
+        <div class="redirect-message">Redirecting to homepage...</div>
+    </div>
+</div>
 
-        function loadCart() {
-            let cart = JSON.parse(localStorage.getItem("cart_books")) || [];
-            let cartItemsDiv = document.getElementById("cart-items");
-            let cartTotal = 0;
-            cartItemsDiv.innerHTML = "";
+<!-- Footer -->
+<div id="footer-placeholder"></div>
 
-            if (cart.length === 0) {
-                cartItemsDiv.innerHTML = `
+<script type="module">
+    import {CHECKOUT_URL,CLEAR_CART_URL} from "../assets/js/url.js";
+
+    document.querySelector('.checkout-btn').addEventListener('click', () => {
+        checkout();
+    });
+
+    document.querySelector('.clear-cart-btn').addEventListener('click',() => {
+        clearCart()
+    })
+
+    // Load footer
+    fetch('../footer.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('footer-placeholder').innerHTML = data;
+        });
+
+    function loadCart() {
+        let cart = JSON.parse(localStorage.getItem("cart_books")) || [];
+        let cartItemsDiv = document.getElementById("cart-items");
+        let cartTotal = 0;
+        cartItemsDiv.innerHTML = "";
+
+        if (cart.length === 0) {
+            cartItemsDiv.innerHTML = `
                     <div class="empty-cart">
                         <i class="bi bi-cart-x"></i>
                         <h3>Your cart is empty</h3>
@@ -103,74 +107,117 @@
                         <a href="../index.html" class="continue-shopping">Continue Shopping</a>
                     </div>
                 `;
-                document.getElementById("cart-total").textContent = "0.00";
-                return;
-            }
+            document.getElementById("cart-total").textContent = "0.00";
+            return;
+        }
 
-            cart.forEach((item, index) => {
-                console.log(item)
-                cartTotal += item.price;
-                let div = document.createElement("div");
-                div.className = "cart-item";
-                div.innerHTML = `
+        cart.forEach((item, index) => {
+            console.log(item)
+            cartTotal += item.price;
+            let div = document.createElement("div");
+            div.className = "cart-item";
+            div.innerHTML = `
                     <div class="cart-item-info">
                         <div class="cart-item-name">${item.title}</div>
                         <div class="cart-item-price">$${item.price.toFixed(2)}</div>
                     </div>
                 `;
-                cartItemsDiv.appendChild(div);
-            });
+            cartItemsDiv.appendChild(div);
+        });
 
-            document.getElementById("cart-total").textContent = cartTotal.toFixed(2);
-        }
+        document.getElementById("cart-total").textContent = cartTotal.toFixed(2);
+    }
 
-        function updateQuantity(index, change) {
-            let cart = JSON.parse(localStorage.getItem("cart")) || [];
-            cart[index].quantity += change;
+    async function clearCart() {
+        try {
 
-            if (cart[index].quantity <= 0) {
-                cart.splice(index, 1);
+            const requestBody = {
+                cartID: localStorage.getItem('cartID'),
+                userID: localStorage.getItem('userID')
             }
 
-            localStorage.setItem("cart", JSON.stringify(cart));
-            loadCart();
+            const response = await fetch(CLEAR_CART_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(requestBody)
+            })
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            console.log('Cart deleted')
+            // Clear cart
+            localStorage.removeItem("cart_books");
+            let cartData = await response.json();
+            localStorage.setItem('cartID', cartData.id);
+
+            loadCart()
+        } catch (e) {
+            console.log('Error checking cart out', e)
         }
 
-        function removeItem(index) {
-            let cart = JSON.parse(localStorage.getItem("cart")) || [];
-            cart.splice(index, 1);
-            localStorage.setItem("cart", JSON.stringify(cart));
-            loadCart();
-        }
+    }
 
-        function clearCart() {
-            localStorage.removeItem("cart");
-            loadCart();
-        }
+    async function checkout() {
+        try {
 
-        function checkout() {
+            const requestBody = {
+                cartID: localStorage.getItem('cartID'),
+                userID: localStorage.getItem('userID')
+            }
+
+            const response = await fetch(CHECKOUT_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(requestBody)
+            })
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
             // Show success modal
             const modal = document.getElementById('successModal');
             modal.style.display = 'flex';
 
+            console.log('Cart checked out')
             // Clear cart
-            localStorage.removeItem("cart");
+            localStorage.removeItem("cart_books");
+            let cartData = await response.json();
+            console.log('Cart data:', cartData);
+            localStorage.setItem('cartID', cartData.id)
+
 
             // Redirect after 2 seconds
             setTimeout(() => {
                 window.location.href = "../index.html";
             }, 2000);
+        } catch (e) {
+            console.log('Error checking cart out', e)
         }
 
-        // Initialize AOS
-        AOS.init({
-            duration: 1000,
-            easing: 'ease-in-out',
-            once: true,
-            mirror: false
-        });
+    }
 
-        loadCart();
-    </script>
+    // Initialize AOS
+    AOS.init({
+        duration: 1000,
+        easing: 'ease-in-out',
+        once: true,
+        mirror: false
+    });
+
+    loadCart();
+</script>
+
+<!-- Vendor JS Files -->
+<script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../assets/vendor/aos/aos.js"></script>
+<script src="../assets/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="../assets/vendor/purecounter/purecounter_vanilla.js"></script>
+<script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
 </body>
 </html>
