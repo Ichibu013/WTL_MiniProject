@@ -1,11 +1,20 @@
 // Function to fetch current cart data
-import {GET_ALL_CART_URL, GET_CURRENT_CART_URL} from "/assets/js/url.js";
+import {GET_CURRENT_CART_URL} from "../js/url.js";
 
 // Function to update cart count in UI
 function updateCartCount(count) {
     const cartCountElement = document.getElementById('cart-count');
     if (cartCountElement) {
         cartCountElement.textContent = count;
+    }
+}
+
+// Function to save cart books to localStorage
+export function saveCartBooksToLocalStorage(books) {
+    try {
+        localStorage.setItem('cart_books', JSON.stringify(books));
+    } catch (error) {
+        console.error('Error saving cart books to localStorage:', error);
     }
 }
 
@@ -36,6 +45,8 @@ export async function fetchCartData() {
         const cartData = await response.json();
         console.log('Cart data:', cartData);
         localStorage.setItem('cartID',cartData.id)
+        saveCartBooksToLocalStorage(cartData.bookID)
+        localStorage.setItem('cart_book_quantity',cartData.quantity)
         
         // Update cart count in UI
         if (Array.isArray(cartData)) {

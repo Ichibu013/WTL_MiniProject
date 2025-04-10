@@ -25,7 +25,7 @@
 
     <!-- Main CSS File -->
     <link href="../assets/css/main.css" rel="stylesheet">
-    /head>
+</head>
 <body>
     <!-- Header -->
     <header id="header" class="header d-flex align-items-center sticky-top">
@@ -71,14 +71,7 @@
     </div>
 
     <!-- Footer -->
-    <footer id="footer" class="footer dark-background">
-        <div class="container copyright text-center mt-4">
-            <p>© <span>Copyright</span> <strong class="px-1 sitename">BookSwamp</strong> <span>All Rights Reserved</span></p>
-            <div class="credits">
-                <p>Designed by Ansh & Divesh</p>
-            </div>
-        </div>
-    </footer>
+    <div id="footer-placeholder"></div>
 
     <!-- Vendor JS Files -->
     <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -88,8 +81,15 @@
     <script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
 
     <script>
+        // Load footer
+        fetch('../footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-placeholder').innerHTML = data;
+            });
+
         function loadCart() {
-            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            let cart = JSON.parse(localStorage.getItem("cart_books")) || [];
             let cartItemsDiv = document.getElementById("cart-items");
             let cartTotal = 0;
             cartItemsDiv.innerHTML = "";
@@ -108,23 +108,14 @@
             }
 
             cart.forEach((item, index) => {
-                cartTotal += item.price * item.quantity;
+                console.log(item)
+                cartTotal += item.price;
                 let div = document.createElement("div");
                 div.className = "cart-item";
                 div.innerHTML = `
                     <div class="cart-item-info">
-                        <div class="cart-item-name">${item.name}</div>
+                        <div class="cart-item-name">${item.title}</div>
                         <div class="cart-item-price">$${item.price.toFixed(2)}</div>
-                        <div class="cart-item-quantity">
-                            <button class="quantity-btn" onclick="updateQuantity(${index}, -1)">-</button>
-                            <span class="quantity-display">${item.quantity}</span>
-                            <button class="quantity-btn" onclick="updateQuantity(${index}, 1)">+</button>
-                        </div>
-                    </div>
-                    <div class="cart-item-actions">
-                        <button class="remove-btn" onclick="removeItem(${index})">
-                            <i class="bi bi-trash"></i> Remove
-                        </button>
                     </div>
                 `;
                 cartItemsDiv.appendChild(div);
