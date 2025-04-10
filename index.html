@@ -104,6 +104,13 @@
 <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
 <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
 
+<!-- Initialize cart functionality -->
+<script type="module">
+    import { fetchCartData } from './assets/js/cart.js';
+    // Initial cart fetch
+    fetchCartData();
+</script>
+
 <!-- Main JS Files -->
 <script type="module" src="assets/js/cart.js"></script>
 <script src="assets/js/main.js"></script>
