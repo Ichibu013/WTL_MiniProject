@@ -6,7 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="8b5d1e28-c0b0-4fdc-8971-7d7e4c7706d5" name="Changes" comment="remove registration button when logged in">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/forms/loginform.html" beforeDir="false" afterPath="$PROJECT_DIR$/forms/loginform.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/url.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/url.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
