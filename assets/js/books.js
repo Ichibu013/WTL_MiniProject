@@ -311,8 +311,15 @@ const booksModule = {
                     });
 
                     if (response.ok) {
-                        alert(`Added "${book.title}" to cart!`);
                         this.closeModal();
+                        const cartSuccessModalOverlay = document.getElementById('cartSuccessModalOverlay');
+                        const cartSuccessModal = document.getElementById('cartSuccessModal');
+                        cartSuccessModalOverlay.style.display = 'flex';
+                        cartSuccessModal.style.display = 'block';
+                        setTimeout(() => {
+                            cartSuccessModalOverlay.style.display = 'none';
+                            cartSuccessModal.style.display = 'none';
+                        }, 2000);
                     } else {
                         const data = await response.json();
                         alert(`Failed to add to cart: ${data.message || 'Unknown error'}`);

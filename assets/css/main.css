@@ -1084,6 +1084,20 @@ section,
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+.modal-sm {
+  display: flex;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  max-width : fit-content;
+  width: fit-content;
+  max-height: fit-content;
+  overflow-y: hidden;
+  animation: fadeIn 0.3s;
+  position: relative;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
 .modal-content {
   position: relative;
   width: 100%;

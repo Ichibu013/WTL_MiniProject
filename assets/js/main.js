@@ -270,3 +270,6 @@ function initializeMainJS() {
         });
     }
 })();
+
+// Call initialization function when DOM is loaded
+document.addEventListener('DOMContentLoaded', initializeMainJS);

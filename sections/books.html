@@ -100,27 +100,47 @@
         </div>
     </div>
 
-    <!-- Book Detail Modal -->
-    <div class="modal-overlay" id="modalOverlay">
-        <div id="bookDetailModal" class="modal" role="dialog" aria-labelledby="modalTitle" aria-modal="true">
+</section>
+
+<!-- Cart Success Modal -->
+<div class="modal-overlay" id="cartSuccessModalOverlay">
+    <div id="cartSuccessModal" class="modal-sm" role="alert" aria-labelledby="cartSuccessModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <span class="closeModal" onclick="window.booksModule.closeModal()" aria-label="Close modal">&times;</span>
-                <div class="modal-body d-flex flex-column flex-md-row">
-                    <div class="modal-left me-md-4">
-                        <h3 id="modalTitle"></h3>
-                        <p><strong>Author:</strong> <span id="modalAuthor"></span></p>
-                        <p><strong>Price:</strong> $<span id="modalPrice"></span></p>
-                        <p><strong>Description:</strong></p>
-                        <p id="modalDescription"></p>
-                        <button id="addToCartBtn" class="add-to-cart btn btn-primary mt-3">
-                            Add to Cart
-                        </button>
-                    </div>
-                    <div class="modal-right">
-                        <img id="modalImage" src="" alt="Book cover image" class="img-fluid"/>
+                <div class="modal-header py-2">
+                    <h5 class="modal-title" id="cartSuccessModalLabel">Added to Cart</h5>
+                </div>
+                <div class="modal-body py-3">
+                    <div class="text-center">
+                        <i class="bi bi-check-circle text-success" style="font-size: 2rem;"></i>
+                        <p class="mt-2 mb-0">Item added to cart!</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</section>
+</div>
+
+<!-- Book Detail Modal -->
+<div class="modal-overlay" id="modalOverlay">
+    <div id="bookDetailModal" class="modal" role="dialog" aria-labelledby="modalTitle" aria-modal="true">
+        <div class="modal-content">
+            <span class="closeModal" onclick="window.booksModule.closeModal()" aria-label="Close modal">&times;</span>
+            <div class="modal-body d-flex flex-column flex-md-row">
+                <div class="modal-left me-md-4">
+                    <h3 id="modalTitle"></h3>
+                    <p><strong>Author:</strong> <span id="modalAuthor"></span></p>
+                    <p><strong>Price:</strong> $<span id="modalPrice"></span></p>
+                    <p><strong>Description:</strong></p>
+                    <p id="modalDescription"></p>
+                    <button id="addToCartBtn" class="add-to-cart btn btn-primary mt-3">
+                        Add to Cart
+                    </button>
+                </div>
+                <div class="modal-right">
+                    <img id="modalImage" src="" alt="Book cover image" class="img-fluid"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

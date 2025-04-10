@@ -71,6 +71,19 @@
     </div>
 </div>
 
+<!-- Clear Cart Modal -->
+<div class="success-modal" id="clearCartModal">
+    <div class="success-modal-content">
+        <i class="bi bi-exclamation-circle"></i>
+        <h3>Clear Cart?</h3>
+        <p>Are you sure you want to remove all items from your cart?</p>
+        <div class="modal-actions">
+            <button class="cart-btn checkout-btn" id="confirmClear" >Yes, Clear Cart</button>
+            <button class="cart-btn clear-cart-btn" id="cancelClear">Cancel</button>
+        </div>
+    </div>
+</div>
+
 <!-- Footer -->
 <div id="footer-placeholder"></div>
 
@@ -82,8 +95,17 @@
     });
 
     document.querySelector('.clear-cart-btn').addEventListener('click',() => {
-        clearCart()
-    })
+        document.getElementById('clearCartModal').style.display = 'flex';
+    });
+
+    document.getElementById('confirmClear').addEventListener('click', () => {
+        clearCart();
+        document.getElementById('clearCartModal').style.display = 'none';
+    });
+
+    document.getElementById('cancelClear').addEventListener('click', () => {
+        document.getElementById('clearCartModal').style.display = 'none';
+    });
 
     // Load footer
     fetch('../footer.html')
