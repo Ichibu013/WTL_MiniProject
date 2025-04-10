@@ -23,6 +23,8 @@ export async function fetchCartData() {
         const userID = localStorage.getItem('userID');
         if (!userID) {
             updateCartCount(0);
+            localStorage.removeItem('cartID')
+            localStorage.removeItem('cart_books')
             return;
         }
         
@@ -46,14 +48,7 @@ export async function fetchCartData() {
         console.log('Cart data:', cartData);
         localStorage.setItem('cartID',cartData.id)
         saveCartBooksToLocalStorage(cartData.bookID)
-        localStorage.setItem('cart_book_quantity',cartData.quantity)
-        
-        // Update cart count in UI
-        if (Array.isArray(cartData)) {
-            updateCartCount(cartData.length);
-        } else {
-            updateCartCount(0);
-        }
+
     } catch (error) {
         console.error('Error fetching cart data:', error);
         updateCartCount(0);

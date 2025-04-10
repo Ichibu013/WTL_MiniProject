@@ -164,7 +164,7 @@ function initializeMainJS() {
             });
         }
 
-        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        let cart = JSON.parse(localStorage.getItem("cart_books")) || [];
 
         function updateCartCount() {
             const cartCount = document.getElementById("cart-count");

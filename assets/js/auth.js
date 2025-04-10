@@ -39,6 +39,8 @@ function handleLogout(e) {
     localStorage.removeItem('userID');
     localStorage.removeItem('username');
     localStorage.removeItem('role');
+    localStorage.removeItem('cartID')
+    localStorage.removeItem('cart_books')
     // Dispatch login state change event
     window.dispatchEvent(new Event('loginStateChanged'));
     window.location.href = 'index.html';
