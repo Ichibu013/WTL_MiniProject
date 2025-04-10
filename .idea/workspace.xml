@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8b5d1e28-c0b0-4fdc-8971-7d7e4c7706d5" name="Changes" comment="remove registration button when logged in">
+    <list default="true" id="8b5d1e28-c0b0-4fdc-8971-7d7e4c7706d5" name="Changes" comment="updated">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/url.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/url.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/cart.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/cart.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/forms/cart.html" beforeDir="false" afterPath="$PROJECT_DIR$/forms/cart.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -198,7 +199,31 @@
       <option name="project" value="LOCAL" />
       <updated>1744095474315</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="updated">
+      <option name="closed" value="true" />
+      <created>1744296602367</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1744296602367</updated>
+    </task>
+    <task id="LOCAL-00015" summary="updated">
+      <option name="closed" value="true" />
+      <created>1744296826426</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1744296826426</updated>
+    </task>
+    <task id="LOCAL-00016" summary="updated">
+      <option name="closed" value="true" />
+      <created>1744301871511</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1744301871511</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -228,6 +253,7 @@
     <MESSAGE value="Login added" />
     <MESSAGE value="Login added with admin" />
     <MESSAGE value="remove registration button when logged in" />
-    <option name="LAST_COMMIT_MESSAGE" value="remove registration button when logged in" />
+    <MESSAGE value="updated" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated" />
   </component>
 </project>
