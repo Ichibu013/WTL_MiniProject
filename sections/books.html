@@ -1,0 +1,131 @@
+<!-- Explore Books Section -->
+<section id="books" class="books section">
+    <div class="container section-title" data-aos="fade-up">
+        <h2>Explore Books</h2>
+        <p><span>Discover</span> <span class="description-title">Your Next Read</span></p>
+    </div>
+
+    <!-- Filters and Search -->
+    <div class="container filters">
+        
+        <div class="row d-flex align-items-center justify-content-between flex-wrap">
+            <div class="col-md-12 mb-3">
+                <label for="searchFilter">Search:</label>
+                <input type="text" id="searchFilter" class="form-control form-control-lg" placeholder="Search books..."
+                       aria-label="Search books"/>
+            </div>
+            <div class="col-md-3 mb-3">
+                <label for="priceFilter">Price:</label>
+                <select id="priceFilter" class="form-control" aria-label="Filter by price">
+                    <option value="all">All</option>
+                    <option value="0-10">$0 - $10</option>
+                    <option value="10-20">$10 - $20</option>
+                    <option value="20-50">$20 - $50</option>
+                </select>
+            </div>
+            <div class="col-md-3 mb-3">
+                <label for="languageFilter">Language:</label>
+                <select id="languageFilter" class="form-control" aria-label="Filter by language">
+                    <option value="all">All</option>
+                    <option value="english">English</option>
+                    <option value="hindi">Hindi</option>
+                    <option value="french">French</option>
+                    <option value="german">German</option>
+                </select>
+            </div>
+            <div class="col-md-3 mb-3">
+                <label for="categoryFilter">Category:</label>
+                <select id="categoryFilter" class="form-control" aria-label="Filter by category">
+                    <option value="all">All</option>
+                    <option value="fiction">Fiction</option>
+                    <option value="mystery">Mystery</option>
+                    <option value="science-fiction">Science Fiction</option>
+                    <option value="fantasy">Fantasy</option>
+                    <option value="romance">Romance</option>
+                    <option value="biographies">Biographies</option>
+                    <option value="crime">Crime</option>
+                    <option value="thriller">Thriller/Suspense</option>
+                    <option value="historical-fiction">Historical Fiction</option>
+                    <option value="action-adventure">Action & Adventure</option>
+                    <option value="horror">Horror</option>
+                    <option value="health">Health</option>
+                    <option value="travel">Travel</option>
+                    <option value="religion">Religion/Spirituality</option>
+                    <option value="philosophy">Philosophy</option>
+                    <option value="comics">Comics</option>
+                </select>
+            </div>
+            <div class="col-md-3 mb-3">
+                <label for="sortFilter">Sort By:</label>
+                <select id="sortFilter" class="form-control" aria-label="Sort books">
+                    <option value="default">Default</option>
+                    <option value="price-low">Price: Low to High</option>
+                    <option value="price-high">Price: High to Low</option>
+                    <option value="popularity">Popularity</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <!-- Book Section Title -->
+    <div class="container section-title" data-aos="fade-up">
+        <p><span>Explore Our</span> <span class="description-title">Books Collection</span></p>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div id="booksLoading" class="text-center my-4" style="display: none;">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+
+    <div class="container mt-4">
+        <div id="booksContainer" class="row row-cols-2 row-cols-sm-4 row-cols-lg-6 g-4">
+            <!--Dynamically loaded books will be displayed here.&ndash;&gt;-->
+        </div>
+    </div>
+
+</section>
+
+<!-- Cart Success Modal -->
+<div class="modal-overlay" id="cartSuccessModalOverlay">
+    <div id="cartSuccessModal" class="modal-sm" role="alert" aria-labelledby="cartSuccessModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header py-2">
+                    <h5 class="modal-title" id="cartSuccessModalLabel">Added to Cart</h5>
+                </div>
+                <div class="modal-body py-3">
+                    <div class="text-center">
+                        <i class="bi bi-check-circle text-success" style="font-size: 2rem;"></i>
+                        <p class="mt-2 mb-0">Item added to cart!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Book Detail Modal -->
+<div class="modal-overlay" id="modalOverlay">
+    <div id="bookDetailModal" class="modal" role="dialog" aria-labelledby="modalTitle" aria-modal="true">
+        <div class="modal-content">
+            <span class="closeModal" onclick="window.booksModule.closeModal()" aria-label="Close modal">&times;</span>
+            <div class="modal-body d-flex flex-column flex-md-row">
+                <div class="modal-left me-md-4">
+                    <h3 id="modalTitle"></h3>
+                    <p><strong>Author:</strong> <span id="modalAuthor"></span></p>
+                    <p><strong>Price:</strong> $<span id="modalPrice"></span></p>
+                    <p><strong>Description:</strong></p>
+                    <p id="modalDescription"></p>
+                    <button id="addToCartBtn" class="add-to-cart btn btn-primary mt-3">
+                        Add to Cart
+                    </button>
+                </div>
+                <div class="modal-right">
+                    <img id="modalImage" src="" alt="Book cover image" class="img-fluid"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

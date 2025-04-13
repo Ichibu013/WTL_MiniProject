@@ -4,32 +4,79 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8b5d1e28-c0b0-4fdc-8971-7d7e4c7706d5" name="Changes" comment="" />
+    <list default="true" id="8b5d1e28-c0b0-4fdc-8971-7d7e4c7706d5" name="Changes" comment="updated">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sections/books.html" beforeDir="false" afterPath="$PROJECT_DIR$/sections/books.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="Ansh Sharma &lt;ansharma013@gmail.com&gt;" />
+      </list>
+    </option>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GithubDefaultAccount">
+    <option name="defaultAccountId" value="7abd35c4-754f-42ba-9986-09a7dbcb4b14" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 8
 }</component>
   <component name="ProjectId" id="2vGyA7doFoVyPgKS9QT3blM64hU" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/ansha/OneDrive/Documents/TE/SEM-2/WTL/Mini Project/Front End/Online Book Store zip/Online Book Store&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "JavaScript Debug.index.html.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "branch-1",
+    "last_opened_file_path": "C:/Users/ansha/OneDrive/Documents/TE/SEM-2/WTL/Mini Project/Front End/Online Book Store zip/Online Book Store/assets/img",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\ansha\OneDrive\Documents\TE\SEM-2\WTL\Mini Project\Front End\Online Book Store zip\Online Book Store\assets\img" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\ansha\OneDrive\Documents\TE\SEM-2\WTL\Mini Project\Front End\Online Book Store zip\Online Book Store\forms" />
+    </key>
+  </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="loginLogoutBtn" />
+    </option>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -46,11 +93,220 @@
       <option name="presentableId" value="Default" />
       <updated>1743785558674</updated>
       <workItem from="1743785560183" duration="2406000" />
-      <workItem from="1743788004133" duration="603000" />
+      <workItem from="1743788004133" duration="4581000" />
+      <workItem from="1743857880416" duration="13502000" />
+      <workItem from="1743915455246" duration="4680000" />
+      <workItem from="1744003332281" duration="731000" />
+      <workItem from="1744008065096" duration="16625000" />
+      <workItem from="1744081217976" duration="6792000" />
     </task>
+    <task id="LOCAL-00001" summary="Initial Commit">
+      <option name="closed" value="true" />
+      <created>1743789041193</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1743789041193</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Moduler sections">
+      <option name="closed" value="true" />
+      <created>1743789329348</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1743789329348</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Fixed categories.html">
+      <option name="closed" value="true" />
+      <created>1743790589470</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1743790589470</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Fixed authors and books.html">
+      <option name="closed" value="true" />
+      <created>1743792580787</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1743792580787</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Update">
+      <option name="closed" value="true" />
+      <created>1743877561303</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1743877561303</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Final Webpage construct">
+      <option name="closed" value="true" />
+      <created>1744029453796</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1744029453796</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Construct with Books backend">
+      <option name="closed" value="true" />
+      <created>1744045678873</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1744045678873</updated>
+    </task>
+    <task id="LOCAL-00008" summary="fix">
+      <option name="closed" value="true" />
+      <created>1744046619748</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1744046619748</updated>
+    </task>
+    <task id="LOCAL-00009" summary="fix">
+      <option name="closed" value="true" />
+      <created>1744046875609</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1744046875609</updated>
+    </task>
+    <task id="LOCAL-00010" summary="added manage form">
+      <option name="closed" value="true" />
+      <created>1744047403399</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1744047403399</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Login added">
+      <option name="closed" value="true" />
+      <created>1744091525316</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1744091525316</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Login added with admin">
+      <option name="closed" value="true" />
+      <created>1744093431885</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1744093431885</updated>
+    </task>
+    <task id="LOCAL-00013" summary="remove registration button when logged in">
+      <option name="closed" value="true" />
+      <created>1744095474315</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1744095474315</updated>
+    </task>
+    <task id="LOCAL-00014" summary="updated">
+      <option name="closed" value="true" />
+      <created>1744296602367</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1744296602367</updated>
+    </task>
+    <task id="LOCAL-00015" summary="updated">
+      <option name="closed" value="true" />
+      <created>1744296826426</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1744296826426</updated>
+    </task>
+    <task id="LOCAL-00016" summary="updated">
+      <option name="closed" value="true" />
+      <created>1744301871511</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1744301871511</updated>
+    </task>
+    <task id="LOCAL-00017" summary="updated">
+      <option name="closed" value="true" />
+      <created>1744303340509</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1744303340509</updated>
+    </task>
+    <task id="LOCAL-00018" summary="updated">
+      <option name="closed" value="true" />
+      <created>1744303347716</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1744303347716</updated>
+    </task>
+    <task id="LOCAL-00019" summary="updated">
+      <option name="closed" value="true" />
+      <created>1744304071408</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1744304071408</updated>
+    </task>
+    <task id="LOCAL-00020" summary="updated">
+      <option name="closed" value="true" />
+      <created>1744307373245</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1744307373245</updated>
+    </task>
+    <task id="LOCAL-00021" summary="updated">
+      <option name="closed" value="true" />
+      <created>1744309846770</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1744309846770</updated>
+    </task>
+    <task id="LOCAL-00022" summary="updated">
+      <option name="closed" value="true" />
+      <created>1744310831411</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1744310831411</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Initial Commit" />
+    <MESSAGE value="Moduler sections" />
+    <MESSAGE value="Fixed categories.html" />
+    <MESSAGE value="Fixed authors and books.html" />
+    <MESSAGE value="Update" />
+    <MESSAGE value="Final Webpage construct" />
+    <MESSAGE value="Construct with Books backend" />
+    <MESSAGE value="fix" />
+    <MESSAGE value="added manage form" />
+    <MESSAGE value="Login added" />
+    <MESSAGE value="Login added with admin" />
+    <MESSAGE value="remove registration button when logged in" />
+    <MESSAGE value="updated" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated" />
   </component>
 </project>

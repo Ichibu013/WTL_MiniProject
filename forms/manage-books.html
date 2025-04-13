@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Manage Books - Online Book Store</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+
+    <!-- Favicons -->
+    <link href="../assets/img/favicon.png" rel="icon">
+    <link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Amatic+SC:wght@400;700&display=swap"
+          rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="../assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="../assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+    <!-- Main CSS File -->
+    <link href="../assets/css/main.css" rel="stylesheet">
+</head>
+
+<body class="manage-books-page">
+<!-- Header -->
+<header id="header" class="header d-flex align-items-center sticky-top">
+    <div class="container position-relative d-flex align-items-center justify-content-between">
+        <a href="../index.html" class="logo d-flex align-items-center me-auto me-xl-0">
+            <img src="../assets/img/logobook.jpg" alt="">
+            <h1 class="sitename">BookSwamp</h1>
+            <span>.</span>
+        </a>
+    </div>
+</header>
+
+<main class="main">
+    <section class="manage-books-section py-5">
+        <div class="container">
+            <h2 class="text-center mb-4">Manage Books</h2>
+
+            <!-- Add Book Form -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h3 class="card-title mb-0">Add New Book</h3>
+                </div>
+                <div class="card-body">
+                    <form id="addBookForm">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="title" class="form-label">Title</label>
+                                <input type="text" class="form-control" id="title" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="author" class="form-label">Author</label>
+                                <input type="text" class="form-control" id="author" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="price" class="form-label">Price</label>
+                                <input type="number" class="form-control" id="price" step="0.01" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="category" class="form-label">Category</label>
+                                <input type="text" class="form-control" id="category" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="language" class="form-label">Language</label>
+                                <input type="text" class="form-control" id="language" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="imageUrl" class="form-label">Image URL</label>
+                                <input type="url" class="form-control" id="imageUrl" required>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <label for="description" class="form-label">Description</label>
+                                <textarea class="form-control" id="description" rows="3" required></textarea>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="isbn" class="form-label">ISBN</label>
+                                <input type="text" class="form-control" id="isbn" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="publishDate" class="form-label">Publish Date</label>
+                                <input type="date" class="form-control" id="publishDate" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="publisher" class="form-label">Publisher</label>
+                                <input type="text" class="form-control" id="publisher" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="pageCount" class="form-label">Page Count</label>
+                                <input type="number" class="form-control" id="pageCount" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="rating" class="form-label">Rating</label>
+                                <input type="number" class="form-control" id="rating" step="0.1" min="0" max="5"
+                                       required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="reviews" class="form-label">Number of Reviews</label>
+                                <input type="number" class="form-control" id="reviews" min="0" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Add Book</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Books List -->
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title mb-0">Current Books</h3>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Author</th>
+                                <th>Price</th>
+                                <th>Category</th>
+                                <th>Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody id="booksTableBody">
+                            <!-- Books will be loaded here dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- Footer -->
+<div id="footer-container" class="footer">
+    <!-- Footer will be loaded here -->
+</div>
+
+<!-- Scroll Top -->
+<a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center">
+    <i class="bi bi-arrow-up-short"></i>
+</a>
+
+<!-- Preloader -->
+<div id="preloader"></div>
+
+<!-- Vendor JS Files -->
+<script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../assets/vendor/php-email-form/validate.js"></script>
+<script src="../assets/vendor/aos/aos.js"></script>
+<script src="../assets/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="../assets/vendor/purecounter/purecounter_vanilla.js"></script>
+<script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+<!-- Main JS File -->
+<script src="../assets/js/main.js"></script>
+<!-- Modules JS File -->
+<script src="../assets/js/url.js" type="module"></script>
+<script src="../assets/js/manage-books.js" type="module" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        fetch('../footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-container').innerHTML = data;
+            })
+            .catch(error => console.error('Error loading footer:', error));
+    });
+</script>
+</body>
+
+</html> 

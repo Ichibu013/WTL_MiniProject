@@ -1,70 +1,245 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Cart</title>
-    <script defer src="main.js"></script>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Shopping Cart - BookSwamp</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+
+    <!-- Favicons -->
+    <link href="../assets/img/favicon.png" rel="icon">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Amatic+SC:wght@400;700&display=swap"
+          rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="../assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="../assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+    <!-- Main CSS File -->
+    <link href="../assets/css/main.css" rel="stylesheet">
 </head>
 <body>
-    <h1>Your Cart</h1>
-    <div id="cart-items"></div>
-    <button onclick="clearCart()">Clear Cart</button>
-    <button onclick="checkout()">Checkout</button>
+<!-- Header -->
+<header id="header" class="header d-flex align-items-center sticky-top">
+    <div class="container position-relative d-flex align-items-center justify-content-between">
+        <a href="../index.html" class="logo d-flex align-items-center me-auto me-xl-0">
+            <img src="../assets/img/logobook.jpg" alt="">
+            <h1 class="sitename">BookSwamp</h1>
+            <span>.</span>
+        </a>
+    </div>
+</header>
 
-    <script>
-        function loadCart() {
-            let cart = JSON.parse(localStorage.getItem("cart")) || [];
-            let cartItemsDiv = document.getElementById("cart-items");
-            cartItemsDiv.innerHTML = "";
+<main class="cart-container">
+    <div class="cart-title" data-aos="fade-up">
+        <h1>Shopping Cart</h1>
+        <p>Your selected books</p>
+    </div>
 
-            if (cart.length === 0) {
-                cartItemsDiv.innerHTML = "<p>Your cart is empty</p>";
-                return;
-            }
+    <div class="cart-items" id="cart-items" data-aos="fade-up" data-aos-delay="100">
+        <!-- Cart items will be dynamically loaded here -->
+    </div>
 
-            cart.forEach((item, index) => {
-                let div = document.createElement("div");
-                div.innerHTML = `
-                    <p>${item.name} - $${item.price} x ${item.quantity} 
-                        <button onclick="updateQuantity(${index}, -1)">-</button>
-                        <button onclick="updateQuantity(${index}, 1)">+</button>
-                        <button onclick="removeItem(${index})">Remove</button>
-                    </p>
+    <div class="cart-summary" data-aos="fade-up" data-aos-delay="200">
+        <div class="cart-total">
+            <h3>Total Amount:</h3>
+            <div class="total-amount">$<span id="cart-total">0.00</span></div>
+        </div>
+        <div class="cart-actions">
+            <button class="cart-btn clear-cart-btn" id="clear-cart-btn">Clear Cart</button>
+            <button class="cart-btn checkout-btn" id="checkout-btn">Proceed to Checkout
+            </button>
+        </div>
+    </div>
+</main>
+
+<!-- Success Modal -->
+<div class="success-modal" id="successModal">
+    <div class="success-modal-content">
+        <i class="bi bi-check-circle"></i>
+        <h3>Purchase Successful!</h3>
+        <p>Thank you for shopping with BookSwamp. Your order has been placed successfully.</p>
+        <div class="redirect-message">Redirecting to homepage...</div>
+    </div>
+</div>
+
+<!-- Clear Cart Modal -->
+<div class="success-modal" id="clearCartModal">
+    <div class="success-modal-content">
+        <i class="bi bi-exclamation-circle"></i>
+        <h3>Clear Cart?</h3>
+        <p>Are you sure you want to remove all items from your cart?</p>
+        <div class="modal-actions">
+            <button class="cart-btn checkout-btn" id="confirmClear" >Yes, Clear Cart</button>
+            <button class="cart-btn clear-cart-btn" id="cancelClear">Cancel</button>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<div id="footer-placeholder"></div>
+
+<script type="module">
+    import {CHECKOUT_URL,CLEAR_CART_URL} from "../assets/js/url.js";
+
+    document.querySelector('.checkout-btn').addEventListener('click', () => {
+        checkout();
+    });
+
+    document.querySelector('.clear-cart-btn').addEventListener('click',() => {
+        document.getElementById('clearCartModal').style.display = 'flex';
+    });
+
+    document.getElementById('confirmClear').addEventListener('click', () => {
+        clearCart();
+        document.getElementById('clearCartModal').style.display = 'none';
+    });
+
+    document.getElementById('cancelClear').addEventListener('click', () => {
+        document.getElementById('clearCartModal').style.display = 'none';
+    });
+
+    // Load footer
+    fetch('../footer.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('footer-placeholder').innerHTML = data;
+        });
+
+    function loadCart() {
+        let cart = JSON.parse(localStorage.getItem("cart_books")) || [];
+        let cartItemsDiv = document.getElementById("cart-items");
+        let cartTotal = 0;
+        cartItemsDiv.innerHTML = "";
+
+        if (cart.length === 0) {
+            cartItemsDiv.innerHTML = `
+                    <div class="empty-cart">
+                        <i class="bi bi-cart-x"></i>
+                        <h3>Your cart is empty</h3>
+                        <p>Looks like you haven't added any books to your cart yet.</p>
+                        <a href="../index.html" class="continue-shopping">Continue Shopping</a>
+                    </div>
                 `;
-                cartItemsDiv.appendChild(div);
-            });
+            document.getElementById("cart-total").textContent = "0.00";
+            return;
         }
 
-        function updateQuantity(index, change) {
-            let cart = JSON.parse(localStorage.getItem("cart")) || [];
-            cart[index].quantity += change;
+        cart.forEach((item, index) => {
+            console.log(item)
+            cartTotal += item.price;
+            let div = document.createElement("div");
+            div.className = "cart-item";
+            div.innerHTML = `
+                    <div class="cart-item-info">
+                        <div class="cart-item-name">${item.title}</div>
+                        <div class="cart-item-price">$${item.price.toFixed(2)}</div>
+                    </div>
+                `;
+            cartItemsDiv.appendChild(div);
+        });
 
-            if (cart[index].quantity <= 0) {
-                cart.splice(index, 1);
+        document.getElementById("cart-total").textContent = cartTotal.toFixed(2);
+    }
+
+    async function clearCart() {
+        try {
+
+            const requestBody = {
+                cartID: localStorage.getItem('cartID'),
+                userID: localStorage.getItem('userID')
             }
 
-            localStorage.setItem("cart", JSON.stringify(cart));
-            loadCart();
+            const response = await fetch(CLEAR_CART_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(requestBody)
+            })
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            console.log('Cart deleted')
+            // Clear cart
+            localStorage.removeItem("cart_books");
+            let cartData = await response.json();
+            localStorage.setItem('cartID', cartData.id);
+
+            loadCart()
+        } catch (e) {
+            console.log('Error checking cart out', e)
         }
 
-        function removeItem(index) {
-            let cart = JSON.parse(localStorage.getItem("cart")) || [];
-            cart.splice(index, 1);
-            localStorage.setItem("cart", JSON.stringify(cart));
-            loadCart();
+    }
+
+    async function checkout() {
+        try {
+
+            const requestBody = {
+                cartID: localStorage.getItem('cartID'),
+                userID: localStorage.getItem('userID')
+            }
+
+            const response = await fetch(CHECKOUT_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(requestBody)
+            })
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            // Show success modal
+            const modal = document.getElementById('successModal');
+            modal.style.display = 'flex';
+
+            console.log('Cart checked out')
+            // Clear cart
+            localStorage.removeItem("cart_books");
+            let cartData = await response.json();
+            console.log('Cart data:', cartData);
+            localStorage.setItem('cartID', cartData.id)
+
+
+            // Redirect after 2 seconds
+            setTimeout(() => {
+                window.location.href = "../index.html";
+            }, 2000);
+        } catch (e) {
+            console.log('Error checking cart out', e)
         }
 
-        function clearCart() {
-            localStorage.removeItem("cart");
-            loadCart();
-        }
+    }
 
-        function checkout() {
-            alert("Redirecting to checkout...");
-            localStorage.removeItem("cart");
-            window.location.href = "checkout.html";
-        }
+    // Initialize AOS
+    AOS.init({
+        duration: 1000,
+        easing: 'ease-in-out',
+        once: true,
+        mirror: false
+    });
 
-        loadCart();
-    </script>
+    loadCart();
+</script>
+
+<!-- Vendor JS Files -->
+<script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../assets/vendor/aos/aos.js"></script>
+<script src="../assets/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="../assets/vendor/purecounter/purecounter_vanilla.js"></script>
+<script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
 </body>
 </html>
